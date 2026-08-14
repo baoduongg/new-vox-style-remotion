@@ -1,0 +1,334 @@
+{
+  "topic": "Vì sao ngáp lại lây?",
+  "format": "16:9",
+  "fps": 30,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "startFrame": 0,
+      "durationInFrames": 194,
+      "voText": "Bạn vừa đọc chữ \"ngáp\" ba lần. Kiểm tra xem — miệng bạn có đang há ra không?",
+      "visualPrompt": "Paper-cut illustration, close-up of a person's face mid-yawn, mouth wide open, layered cut-paper style with soft drop shadows, warm cream background, minimal color palette (terracotta, cream, charcoal)",
+      "visualType": "generated-image",
+      "visualPath": "public/generated/scene-01-bg.png",
+      "layers": [
+        {
+          "src": "public/generated/scene-01-bg.png",
+          "depth": 0,
+          "baseRotationDeg": 0,
+          "entryDelayFrames": 0
+        },
+        {
+          "src": "public/generated/scene-01-face.png",
+          "depth": 1,
+          "baseRotationDeg": -1.5,
+          "entryDelayFrames": 4,
+          "kind": "element",
+          "x": 18,
+          "y": 8,
+          "width": 62
+        },
+        {
+          "src": "public/generated/scene-01-accent.png",
+          "depth": 2,
+          "baseRotationDeg": 2,
+          "entryDelayFrames": 9,
+          "kind": "element",
+          "x": 42,
+          "y": 0,
+          "width": 52
+        }
+      ]
+    },
+    {
+      "id": "scene-02",
+      "startFrame": 203,
+      "durationInFrames": 262,
+      "voText": "Ngáp là một trong những hành vi lây lan nhanh nhất ở người. Chỉ cần nhìn, nghe, thậm chí đọc chữ \"ngáp\" — não bạn đã phản ứng.",
+      "visualPrompt": "Paper-cut illustration, row of 4-5 simplified paper-cutout people sitting side by side, one yawning, visual motion lines showing yawn spreading domino-style to the next person, layered depth with subtle parallax shadows, flat design",
+      "visualType": "generated-image",
+      "visualPath": "public/generated/scene-02-bg.png",
+      "layers": [
+        {
+          "src": "public/generated/scene-02-bg.png",
+          "depth": 0,
+          "baseRotationDeg": 0,
+          "entryDelayFrames": 0
+        },
+        {
+          "src": "public/generated/scene-02-person-front.png",
+          "depth": 2,
+          "baseRotationDeg": -1,
+          "entryDelayFrames": 4,
+          "kind": "element",
+          "x": 2,
+          "y": 14,
+          "width": 34
+        },
+        {
+          "src": "public/generated/scene-02-people-rest.png",
+          "depth": 1,
+          "baseRotationDeg": 1,
+          "entryDelayFrames": 8,
+          "kind": "element",
+          "x": 33,
+          "y": 20,
+          "width": 65
+        },
+        {
+          "src": "public/generated/scene-02-motion.png",
+          "depth": 2,
+          "baseRotationDeg": 1.5,
+          "entryDelayFrames": 12,
+          "kind": "element",
+          "x": 18,
+          "y": 3,
+          "width": 36
+        }
+      ]
+    },
+    {
+      "id": "scene-03",
+      "startFrame": 474,
+      "durationInFrames": 259,
+      "voText": "Nhiều người nghĩ đó là do buồn ngủ lây, hoặc do \"nơ-ron gương\" bắt chước hành vi người khác. Nghe hợp lý — nhưng chưa đủ.",
+      "visualPrompt": "Paper-cut illustration, cross-section of human head/brain made of layered cut paper, small glowing dots representing neurons, large paper-cut question mark floating above, muted color palette",
+      "visualType": "generated-image",
+      "visualPath": "public/generated/scene-03-bg.png",
+      "layers": [
+        {
+          "src": "public/generated/scene-03-bg.png",
+          "depth": 0,
+          "baseRotationDeg": 0,
+          "entryDelayFrames": 0
+        },
+        {
+          "src": "public/generated/scene-03-brain.png",
+          "depth": 1,
+          "baseRotationDeg": -2,
+          "entryDelayFrames": 4,
+          "kind": "element",
+          "x": 12,
+          "y": 14,
+          "width": 64
+        },
+        {
+          "src": "public/generated/scene-03-question.png",
+          "depth": 2,
+          "baseRotationDeg": 3,
+          "entryDelayFrames": 9,
+          "kind": "element",
+          "x": 58,
+          "y": 2,
+          "width": 32
+        }
+      ]
+    },
+    {
+      "id": "scene-04",
+      "startFrame": 742,
+      "durationInFrames": 272,
+      "voText": "Sự thật: ngáp là cách não tự làm mát. Khi hít sâu và há miệng rộng, luồng khí lạnh tràn vào giúp hạ nhiệt độ não đang tăng cao.",
+      "visualPrompt": "Paper-cut illustration, side cross-section of a head with brain visible, cool blue paper-cut airflow ribbon entering through open mouth toward the brain, small thermometer icon showing temperature dropping, layered paper depth with shadows",
+      "visualType": "generated-image",
+      "visualPath": "public/generated/scene-04-bg.png",
+      "layers": [
+        {
+          "src": "public/generated/scene-04-bg.png",
+          "depth": 0,
+          "baseRotationDeg": 0,
+          "entryDelayFrames": 0
+        },
+        {
+          "src": "public/generated/scene-04-head.png",
+          "depth": 1,
+          "baseRotationDeg": 0.8,
+          "entryDelayFrames": 4,
+          "kind": "element",
+          "x": 8,
+          "y": 12,
+          "width": 62
+        },
+        {
+          "src": "public/generated/scene-04-airflow-thermo.png",
+          "depth": 2,
+          "baseRotationDeg": -1.5,
+          "entryDelayFrames": 9,
+          "kind": "element",
+          "x": 54,
+          "y": 16,
+          "width": 44
+        }
+      ]
+    },
+    {
+      "id": "scene-05",
+      "startFrame": 1023,
+      "durationInFrames": 187,
+      "voText": "Vậy tại sao thấy người khác ngáp cũng khiến ta ngáp theo? Đây mới là phần bất ngờ.",
+      "visualPrompt": "Paper-cut illustration, two simplified paper-cutout characters facing each other, one mid-yawn, the other starting to open mouth, layered cut-paper shadows, warm minimal palette",
+      "visualType": "generated-image",
+      "visualPath": "public/generated/scene-05-bg.png",
+      "layers": [
+        {
+          "src": "public/generated/scene-05-bg.png",
+          "depth": 0,
+          "baseRotationDeg": 0,
+          "entryDelayFrames": 0
+        },
+        {
+          "src": "public/generated/scene-05-char-left.png",
+          "depth": 1,
+          "baseRotationDeg": 2,
+          "entryDelayFrames": 4,
+          "kind": "element",
+          "x": 2,
+          "y": 16,
+          "width": 50
+        },
+        {
+          "src": "public/generated/scene-05-char-right.png",
+          "depth": 1,
+          "baseRotationDeg": -2,
+          "entryDelayFrames": 9,
+          "kind": "element",
+          "x": 48,
+          "y": 16,
+          "width": 50
+        }
+      ]
+    },
+    {
+      "id": "scene-06",
+      "startFrame": 1219,
+      "durationInFrames": 288,
+      "voText": "Mức độ \"lây ngáp\" tỉ lệ thuận với mức độ gắn kết. Bạn ngáp theo người thân nhiều hơn người lạ — và ngay cả chó cũng ngáp theo khi thấy chủ ngáp.",
+      "visualPrompt": "Paper-cut illustration split into two panels: left panel a paper-cutout family sitting together, one yawning spreading to the rest; right panel a paper-cutout dog yawning while looking at its owner who is also yawning, consistent layered paper-cut style with soft shadows",
+      "visualType": "generated-image",
+      "visualPath": "public/generated/scene-06-bg.png",
+      "layers": [
+        {
+          "src": "public/generated/scene-06-bg.png",
+          "depth": 0,
+          "baseRotationDeg": 0,
+          "entryDelayFrames": 0
+        },
+        {
+          "src": "public/generated/scene-06-family.png",
+          "depth": 1,
+          "baseRotationDeg": -1,
+          "entryDelayFrames": 4,
+          "kind": "element",
+          "x": 0,
+          "y": 20,
+          "width": 54
+        },
+        {
+          "src": "public/generated/scene-06-dog-owner.png",
+          "depth": 1,
+          "baseRotationDeg": 1,
+          "entryDelayFrames": 9,
+          "kind": "element",
+          "x": 48,
+          "y": 20,
+          "width": 54
+        }
+      ]
+    },
+    {
+      "id": "scene-07",
+      "startFrame": 1516,
+      "durationInFrames": 228,
+      "voText": "Ngáp lây không phải bắt chước vô nghĩa — nó là tín hiệu não bộ đang đồng bộ cảm xúc với người xung quanh, một dạng đồng cảm vô thức.",
+      "visualPrompt": "Paper-cut illustration, two paper-cutout brains connected by a glowing paper ribbon of light, synchronized pulse/heartbeat icons along the ribbon, symbolizing emotional syncing, minimal warm palette with soft shadows",
+      "visualType": "generated-image",
+      "visualPath": "public/generated/scene-07-bg.png",
+      "layers": [
+        {
+          "src": "public/generated/scene-07-bg.png",
+          "depth": 0,
+          "baseRotationDeg": 0,
+          "entryDelayFrames": 0
+        },
+        {
+          "src": "public/generated/scene-07-ribbon.png",
+          "depth": 1,
+          "baseRotationDeg": 0,
+          "entryDelayFrames": 4,
+          "kind": "element",
+          "x": 8,
+          "y": 42,
+          "width": 84
+        },
+        {
+          "src": "public/generated/scene-07-brain-left.png",
+          "depth": 2,
+          "baseRotationDeg": 1.5,
+          "entryDelayFrames": 8,
+          "kind": "element",
+          "x": 2,
+          "y": 8,
+          "width": 42
+        },
+        {
+          "src": "public/generated/scene-07-brain-right.png",
+          "depth": 2,
+          "baseRotationDeg": -1.5,
+          "entryDelayFrames": 12,
+          "kind": "element",
+          "x": 56,
+          "y": 8,
+          "width": 42
+        }
+      ]
+    },
+    {
+      "id": "scene-08",
+      "startFrame": 1753,
+      "durationInFrames": 312,
+      "voText": "Vậy còn vì sao chó lại hiểu được cảm xúc con người dù không cùng ngôn ngữ? Đó là câu chuyện của video sau. Nhấn theo dõi để không bỏ lỡ.",
+      "visualPrompt": "Paper-cut illustration, paper-cutout dog looking up at its owner with an understanding expression, warm golden-hour background, small subscribe/bell icon subtly in corner, layered paper-cut depth with soft shadows",
+      "visualType": "generated-image",
+      "visualPath": "public/generated/scene-08-bg.png",
+      "layers": [
+        {
+          "src": "public/generated/scene-08-bg.png",
+          "depth": 0,
+          "baseRotationDeg": 0,
+          "entryDelayFrames": 0
+        },
+        {
+          "src": "public/generated/scene-08-owner.png",
+          "depth": 1,
+          "baseRotationDeg": -0.5,
+          "entryDelayFrames": 4,
+          "kind": "element",
+          "x": 50,
+          "y": 46,
+          "width": 32
+        },
+        {
+          "src": "public/generated/scene-08-dog.png",
+          "depth": 2,
+          "baseRotationDeg": 1,
+          "entryDelayFrames": 8,
+          "kind": "element",
+          "x": 6,
+          "y": 24,
+          "width": 46
+        },
+        {
+          "src": "public/generated/scene-08-subscribe.png",
+          "depth": 2,
+          "baseRotationDeg": -2,
+          "entryDelayFrames": 13,
+          "kind": "element",
+          "x": 76,
+          "y": 8,
+          "width": 18
+        }
+      ]
+    }
+  ],
+  "audioSrc": "public/audio/voiceover.mp3"
+}
