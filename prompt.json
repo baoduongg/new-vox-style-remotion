@@ -1,0 +1,90 @@
+{
+  "scene-01-bg": {
+    "prompt": "Paper cut craft illustration, layered paper art style, background only — warm kraft paper texture with soft radial gradient, no characters, no objects, plain empty backdrop. Color palette: warm kraft paper background #F4EDE1, secondary paper #D9C4A3. Visible subtle paper grain texture, no photorealistic rendering, no 3D render. Aspect ratio: 16:9."
+  },
+  "scene-01-face": {
+    "prompt": "Paper cut craft illustration, layered paper art style, close-up of a person's face and shoulders mid-yawn, mouth wide open. Isolated subject only, centered, on a plain flat solid white background, no scene background, no ground shadow. Color palette: accent colors #C1553D, #3E5C4F, secondary paper #D9C4A3, outline #2B2B2B. Visible torn paper edges, soft drop shadow under the cutout only, slightly imperfect hand-cut edges, flat design with subtle paper texture grain, no photorealistic rendering, no 3D render — pure paper craft cutout ready for background removal."
+  },
+  "scene-01-accent": {
+    "prompt": "Paper cut craft illustration, layered paper art style, small decorative swirl and motion lines representing a sound/breath burst, no characters, no other elements. Isolated subject only, centered, on a plain flat solid white background, no scene background. Color palette: accent colors #C1553D, #3E5C4F, outline #2B2B2B. Slightly imperfect hand-cut edges, flat design with subtle paper texture grain, no photorealistic rendering, no 3D render — pure paper craft cutout ready for background removal."
+  },
+
+  "scene-02-bg": {
+    "prompt": "Paper cut craft illustration, layered paper art style, background only — empty wooden park bench row extending across the frame, warm kraft paper texture, no people, no characters. Color palette: warm kraft paper background #F4EDE1, secondary paper #D9C4A3, accent #3E5C4F. Visible subtle paper grain texture, no photorealistic rendering, no 3D render. Aspect ratio: 16:9."
+  },
+  "scene-02-person-front": {
+    "prompt": "Paper cut craft illustration, layered paper art style, one paper-cutout person sitting, red sweater, head tilted back mid-yawn, full upper body. Isolated subject only, centered, on a plain flat solid white background, no scene background, no ground shadow. Color palette: accent colors #C1553D, #3E5C4F, secondary paper #D9C4A3, outline #2B2B2B. Visible torn paper edges, soft drop shadow under the cutout only, slightly imperfect hand-cut edges, flat design with subtle paper texture grain, no photorealistic rendering, no 3D render — pure paper craft cutout ready for background removal."
+  },
+  "scene-02-people-rest": {
+    "prompt": "Paper cut craft illustration, layered paper art style, group of three paper-cutout people sitting side by side, teal and red sweaters, varied yawn/reaction expressions, upper bodies only. Isolated subjects only, centered, on a plain flat solid white background, no scene background, no ground shadow. Color palette: accent colors #C1553D, #3E5C4F, secondary paper #D9C4A3, outline #2B2B2B. Visible torn paper edges, soft drop shadow under the cutout only, slightly imperfect hand-cut edges, flat design with subtle paper texture grain, no photorealistic rendering, no 3D render — pure paper craft cutout ready for background removal."
+  },
+  "scene-02-motion": {
+    "prompt": "Paper cut craft illustration, layered paper art style, decorative swirl and motion lines accent representing a yawn spreading through the air, no characters. Isolated subject only, centered, on a plain flat solid white background, no scene background. Color palette: accent colors #C1553D, #3E5C4F, outline #2B2B2B. Slightly imperfect hand-cut edges, flat design with subtle paper texture grain, no photorealistic rendering, no 3D render — pure paper craft cutout ready for background removal."
+  },
+
+  "scene-03-bg": {
+    "prompt": "Paper cut craft illustration, layered paper art style, background only — plain warm kraft paper texture, no objects, no characters. Color palette: warm kraft paper background #F4EDE1, secondary paper #D9C4A3. Visible subtle paper grain texture, no photorealistic rendering, no 3D render. Aspect ratio: 16:9."
+  },
+  "scene-03-brain": {
+    "prompt": "Paper cut craft illustration, layered paper art style, cross-section of a human head and brain made of layered cut paper, small glowing dot neurons inside. Isolated subject only, centered, on a plain flat solid white background, no scene background, no ground shadow. Color palette: accent colors #C1553D, #3E5C4F, secondary paper #D9C4A3, outline #2B2B2B. Visible torn paper edges, soft drop shadow under the cutout only, slightly imperfect hand-cut edges, flat design with subtle paper texture grain, no photorealistic rendering, no 3D render — pure paper craft cutout ready for background removal."
+  },
+  "scene-03-question": {
+    "prompt": "Paper cut craft illustration, layered paper art style, large bold paper-cut question mark shape, simple and graphic, no other elements. Isolated subject only, centered, on a plain flat solid white background, no scene background. Color palette: accent colors #C1553D, #3E5C4F, outline #2B2B2B. Slightly imperfect hand-cut edges, flat design with subtle paper texture grain, no photorealistic rendering, no 3D render — pure paper craft cutout ready for background removal."
+  },
+
+  "scene-04-bg": {
+    "prompt": "Paper cut craft illustration, layered paper art style, background only — plain warm kraft paper texture, no objects, no characters. Color palette: warm kraft paper background #F4EDE1, secondary paper #D9C4A3. Visible subtle paper grain texture, no photorealistic rendering, no 3D render. Aspect ratio: 16:9."
+  },
+  "scene-04-head": {
+    "prompt": "Paper cut craft illustration, layered paper art style, side cross-section of a human head with brain visible inside, paper-cut layered style. Isolated subject only, centered, on a plain flat solid white background, no scene background, no ground shadow. Color palette: accent colors #C1553D, #3E5C4F, secondary paper #D9C4A3, outline #2B2B2B. Visible torn paper edges, soft drop shadow under the cutout only, slightly imperfect hand-cut edges, flat design with subtle paper texture grain, no photorealistic rendering, no 3D render — pure paper craft cutout ready for background removal."
+  },
+  "scene-04-airflow-thermo": {
+    "prompt": "Paper cut craft illustration, layered paper art style, cool blue ribbon of airflow swirling alongside a small paper-cut thermometer icon with a temperature arrow pointing down, decorative accent group only, no characters. Isolated subject only, centered, on a plain flat solid white background, no scene background. Color palette: cool blue accent, #3E5C4F, outline #2B2B2B. Slightly imperfect hand-cut edges, flat design with subtle paper texture grain, no photorealistic rendering, no 3D render — pure paper craft cutout ready for background removal."
+  },
+
+  "scene-05-bg": {
+    "prompt": "Paper cut craft illustration, layered paper art style, background only — plain warm kraft paper texture, no objects, no characters. Color palette: warm kraft paper background #F4EDE1, secondary paper #D9C4A3. Visible subtle paper grain texture, no photorealistic rendering, no 3D render. Aspect ratio: 16:9."
+  },
+  "scene-05-char-left": {
+    "prompt": "Paper cut craft illustration, layered paper art style, one paper-cutout character mid-yawn, mouth wide open, upper body, facing right. Isolated subject only, centered, on a plain flat solid white background, no scene background, no ground shadow. Color palette: accent colors #C1553D, #3E5C4F, secondary paper #D9C4A3, outline #2B2B2B. Visible torn paper edges, soft drop shadow under the cutout only, slightly imperfect hand-cut edges, flat design with subtle paper texture grain, no photorealistic rendering, no 3D render — pure paper craft cutout ready for background removal."
+  },
+  "scene-05-char-right": {
+    "prompt": "Paper cut craft illustration, layered paper art style, one paper-cutout character starting to open their mouth to yawn, upper body, facing left. Isolated subject only, centered, on a plain flat solid white background, no scene background, no ground shadow. Color palette: accent colors #C1553D, #3E5C4F, secondary paper #D9C4A3, outline #2B2B2B. Visible torn paper edges, soft drop shadow under the cutout only, slightly imperfect hand-cut edges, flat design with subtle paper texture grain, no photorealistic rendering, no 3D render — pure paper craft cutout ready for background removal."
+  },
+
+  "scene-06-bg": {
+    "prompt": "Paper cut craft illustration, layered paper art style, background only — plain warm kraft paper texture softly split into two zones by a subtle vertical fold line, no characters. Color palette: warm kraft paper background #F4EDE1, secondary paper #D9C4A3. Visible subtle paper grain texture, no photorealistic rendering, no 3D render. Aspect ratio: 16:9."
+  },
+  "scene-06-family": {
+    "prompt": "Paper cut craft illustration, layered paper art style, paper-cutout family of three sitting together on a sofa, one yawning and spreading to the others. Isolated subject only, centered, on a plain flat solid white background, no scene background, no ground shadow. Color palette: accent colors #C1553D, #3E5C4F, secondary paper #D9C4A3, outline #2B2B2B. Visible torn paper edges, soft drop shadow under the cutout only, slightly imperfect hand-cut edges, flat design with subtle paper texture grain, no photorealistic rendering, no 3D render — pure paper craft cutout ready for background removal."
+  },
+  "scene-06-dog-owner": {
+    "prompt": "Paper cut craft illustration, layered paper art style, paper-cutout dog yawning while looking up at its owner who is also yawning, both figures only, upper bodies. Isolated subject only, centered, on a plain flat solid white background, no scene background, no ground shadow. Color palette: accent colors #C1553D, #3E5C4F, secondary paper #D9C4A3, outline #2B2B2B. Visible torn paper edges, soft drop shadow under the cutout only, slightly imperfect hand-cut edges, flat design with subtle paper texture grain, no photorealistic rendering, no 3D render — pure paper craft cutout ready for background removal."
+  },
+
+  "scene-07-bg": {
+    "prompt": "Paper cut craft illustration, layered paper art style, background only — plain warm kraft paper texture, no objects, no characters. Color palette: warm kraft paper background #F4EDE1, secondary paper #D9C4A3. Visible subtle paper grain texture, no photorealistic rendering, no 3D render. Aspect ratio: 16:9."
+  },
+  "scene-07-brain-left": {
+    "prompt": "Paper cut craft illustration, layered paper art style, one paper-cutout brain shape glowing softly. Isolated subject only, centered, on a plain flat solid white background, no scene background, no ground shadow. Color palette: accent colors #C1553D, #3E5C4F, outline #2B2B2B. Visible torn paper edges, soft drop shadow under the cutout only, slightly imperfect hand-cut edges, flat design with subtle paper texture grain, no photorealistic rendering, no 3D render — pure paper craft cutout ready for background removal."
+  },
+  "scene-07-brain-right": {
+    "prompt": "Paper cut craft illustration, layered paper art style, another paper-cutout brain shape glowing softly, mirrored orientation. Isolated subject only, centered, on a plain flat solid white background, no scene background, no ground shadow. Color palette: accent colors #C1553D, #3E5C4F, outline #2B2B2B. Visible torn paper edges, soft drop shadow under the cutout only, slightly imperfect hand-cut edges, flat design with subtle paper texture grain, no photorealistic rendering, no 3D render — pure paper craft cutout ready for background removal."
+  },
+  "scene-07-ribbon": {
+    "prompt": "Paper cut craft illustration, layered paper art style, glowing paper ribbon of light with small pulse/heartbeat icons along it, decorative connecting accent only, no characters. Isolated subject only, centered, on a plain flat solid white background, no scene background. Color palette: accent colors #C1553D, #3E5C4F, outline #2B2B2B. Slightly imperfect hand-cut edges, flat design with subtle paper texture grain, no photorealistic rendering, no 3D render — pure paper craft cutout ready for background removal."
+  },
+
+  "scene-08-bg": {
+    "prompt": "Paper cut craft illustration, layered paper art style, background only — warm golden-hour gradient background, plain, no characters. Color palette: warm kraft paper background #F4EDE1, accent #C1553D. Visible subtle paper grain texture, no photorealistic rendering, no 3D render. Aspect ratio: 16:9."
+  },
+  "scene-08-dog": {
+    "prompt": "Paper cut craft illustration, layered paper art style, paper-cutout dog looking up with an understanding expression, full body. Isolated subject only, centered, on a plain flat solid white background, no scene background, no ground shadow. Color palette: accent colors #C1553D, #3E5C4F, secondary paper #D9C4A3, outline #2B2B2B. Visible torn paper edges, soft drop shadow under the cutout only, slightly imperfect hand-cut edges, flat design with subtle paper texture grain, no photorealistic rendering, no 3D render — pure paper craft cutout ready for background removal."
+  },
+  "scene-08-owner": {
+    "prompt": "Paper cut craft illustration, layered paper art style, owner's lower body and legs standing, simple paper-cutout silhouette style matching the same aesthetic. Isolated subject only, centered, on a plain flat solid white background, no scene background, no ground shadow. Color palette: accent colors #C1553D, #3E5C4F, secondary paper #D9C4A3, outline #2B2B2B. Visible torn paper edges, soft drop shadow under the cutout only, slightly imperfect hand-cut edges, flat design with subtle paper texture grain, no photorealistic rendering, no 3D render — pure paper craft cutout ready for background removal."
+  },
+  "scene-08-subscribe": {
+    "prompt": "Paper cut craft illustration, layered paper art style, small paper-cut subscribe/bell icon, decorative accent only, no characters. Isolated subject only, centered, on a plain flat solid white background, no scene background. Color palette: accent colors #C1553D, #3E5C4F, outline #2B2B2B. Slightly imperfect hand-cut edges, flat design with subtle paper texture grain, no photorealistic rendering, no 3D render — pure paper craft cutout ready for background removal."
+  }
+}

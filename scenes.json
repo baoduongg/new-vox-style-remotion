@@ -1,0 +1,79 @@
+{
+  "topic": "Vì sao ngáp lại lây?",
+  "format": "16:9",
+  "fps": 30,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "startFrame": 0,
+      "durationInFrames": 180,
+      "voText": "Bạn vừa đọc chữ \"ngáp\" ba lần. Kiểm tra xem — miệng bạn có đang há ra không?",
+      "visualPrompt": "Paper-cut illustration, close-up of a person's face mid-yawn, mouth wide open, layered cut-paper style with soft drop shadows, warm cream background, minimal color palette (terracotta, cream, charcoal)",
+      "visualType": "generated-image",
+      "visualPath": "public/generated/scene-01.png"
+    },
+    {
+      "id": "scene-02",
+      "startFrame": 180,
+      "durationInFrames": 252,
+      "voText": "Ngáp là một trong những hành vi lây lan nhanh nhất ở người. Chỉ cần nhìn, nghe, thậm chí đọc chữ \"ngáp\" — não bạn đã phản ứng.",
+      "visualPrompt": "Paper-cut illustration, row of 4-5 simplified paper-cutout people sitting side by side, one yawning, visual motion lines showing yawn spreading domino-style to the next person, layered depth with subtle parallax shadows, flat design",
+      "visualType": "generated-image",
+      "visualPath": "public/generated/scene-02.png"
+    },
+    {
+      "id": "scene-03",
+      "startFrame": 432,
+      "durationInFrames": 228,
+      "voText": "Nhiều người nghĩ đó là do buồn ngủ lây, hoặc do \"nơ-ron gương\" bắt chước hành vi người khác. Nghe hợp lý — nhưng chưa đủ.",
+      "visualPrompt": "Paper-cut illustration, cross-section of human head/brain made of layered cut paper, small glowing dots representing neurons, large paper-cut question mark floating above, muted color palette",
+      "visualType": "generated-image",
+      "visualPath": "public/generated/scene-03.png"
+    },
+    {
+      "id": "scene-04",
+      "startFrame": 660,
+      "durationInFrames": 252,
+      "voText": "Sự thật: ngáp là cách não tự làm mát. Khi hít sâu và há miệng rộng, luồng khí lạnh tràn vào giúp hạ nhiệt độ não đang tăng cao.",
+      "visualPrompt": "Paper-cut illustration, side cross-section of a head with brain visible, cool blue paper-cut airflow ribbon entering through open mouth toward the brain, small thermometer icon showing temperature dropping, layered paper depth with shadows",
+      "visualType": "generated-image",
+      "visualPath": "public/generated/scene-04.png"
+    },
+    {
+      "id": "scene-05",
+      "startFrame": 912,
+      "durationInFrames": 156,
+      "voText": "Vậy tại sao thấy người khác ngáp cũng khiến ta ngáp theo? Đây mới là phần bất ngờ.",
+      "visualPrompt": "Paper-cut illustration, two simplified paper-cutout characters facing each other, one mid-yawn, the other starting to open mouth, layered cut-paper shadows, warm minimal palette",
+      "visualType": "generated-image",
+      "visualPath": "public/generated/scene-05.png"
+    },
+    {
+      "id": "scene-06",
+      "startFrame": 1068,
+      "durationInFrames": 288,
+      "voText": "Mức độ \"lây ngáp\" tỉ lệ thuận với mức độ gắn kết. Bạn ngáp theo người thân nhiều hơn người lạ — và ngay cả chó cũng ngáp theo khi thấy chủ ngáp.",
+      "visualPrompt": "Paper-cut illustration split into two panels: left panel a paper-cutout family sitting together, one yawning spreading to the rest; right panel a paper-cutout dog yawning while looking at its owner who is also yawning, consistent layered paper-cut style with soft shadows",
+      "visualType": "generated-image",
+      "visualPath": "public/generated/scene-06.png"
+    },
+    {
+      "id": "scene-07",
+      "startFrame": 1356,
+      "durationInFrames": 264,
+      "voText": "Ngáp lây không phải bắt chước vô nghĩa — nó là tín hiệu não bộ đang đồng bộ cảm xúc với người xung quanh, một dạng đồng cảm vô thức.",
+      "visualPrompt": "Paper-cut illustration, two paper-cutout brains connected by a glowing paper ribbon of light, synchronized pulse/heartbeat icons along the ribbon, symbolizing emotional syncing, minimal warm palette with soft shadows",
+      "visualType": "generated-image",
+      "visualPath": "public/generated/scene-07.png"
+    },
+    {
+      "id": "scene-08",
+      "startFrame": 1620,
+      "durationInFrames": 276,
+      "voText": "Vậy còn vì sao chó lại hiểu được cảm xúc con người dù không cùng ngôn ngữ? Đó là câu chuyện của video sau. Nhấn theo dõi để không bỏ lỡ.",
+      "visualPrompt": "Paper-cut illustration, paper-cutout dog looking up at its owner with an understanding expression, warm golden-hour background, small subscribe/bell icon subtly in corner, layered paper-cut depth with soft shadows",
+      "visualType": "generated-image",
+      "visualPath": "public/generated/scene-08.png"
+    }
+  ]
+}
