@@ -2,22 +2,33 @@
 
 Dùng khi user chưa có project Remotion. Nếu đã có project, chỉ đọc mục 3 (cấu trúc scenes.json) và 4 (mapping) để thêm scene mới vào project hiện tại — không chạy lại bước scaffold.
 
+## 0. Đặt tên project — LUÔN tạo thư mục mới theo topic
+
+Mỗi video mới = 1 thư mục project riêng, đặt tên theo topic (kebab-case, không dấu), ví dụ topic "Vì sao ngáp lây" → `vi-sao-ngap-lay`.
+
+KHÔNG bao giờ scaffold đè hoặc tái sử dụng thư mục project của video trước đó (kể cả nếu nó tên `paper-cut-channel` từ phiên làm việc cũ) — mỗi video có `scenes.json`, asset, audio riêng, dùng chung thư mục sẽ ghi đè/đụng file của video khác. Chỉ tái sử dụng thư mục hiện tại nếu user đang tiếp tục sửa CHÍNH video đó trong cùng phiên.
+
 ## 1. Khởi tạo project
 
 ```bash
-pnpm create video@latest paper-cut-channel -- --template=blank
-cd paper-cut-channel
+pnpm create video@latest <project-slug> -- --template=blank
+cd <project-slug>
 pnpm install
 ```
+
+`<project-slug>` = tên rút ra từ mục 0.
 
 ## 2. Cấu trúc thư mục mục tiêu
 
 ```
-paper-cut-channel/
+<project-slug>/
 ├── public/
 │   ├── pexels/            # asset tải từ Pexels
 │   ├── generated/         # ảnh Gemini-generated
-│   └── audio/             # voiceover + SFX
+│   └── audio/
+│       ├── voiceover.mp3
+│       ├── music.mp3      # nhạc nền piano tối giản
+│       └── sfx/           # foley (rustle, slide, pen-write, pop-click, tape-peel — xem sound-design.md)
 ├── src/
 │   ├── scenes/
 │   │   └── Scene.tsx      # component dùng chung (xem paper-cut-style-guide.md)
@@ -86,10 +97,12 @@ import scenesData from '../data/scenes.json';
 
 export const Landscape: React.FC = () => (
   <AbsoluteFill>
-    <Audio src={staticFile('audio/voiceover.mp3')} />
-    {scenesData.scenes.map((s) => (
+    <Audio src={staticFile('audio/voiceover.mp3')} volume={1} />
+    <Audio src={staticFile('audio/music.mp3')} volume={0.15} />
+    {scenesData.scenes.map((s, i) => (
       <Sequence key={s.id} from={s.startFrame} durationInFrames={s.durationInFrames}>
-        <Scene layers={s.layers} durationInFrames={s.durationInFrames} />
+        <Scene layers={s.layers} durationInFrames={s.durationInFrames} sceneIndex={i} />
+        {/* Foley SFX theo scene — cách sync và mức volume xem sound-design.md */}
       </Sequence>
     ))}
   </AbsoluteFill>
