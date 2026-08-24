@@ -414,6 +414,53 @@ export const ImageScene: React.FC<ImageSceneProps> = ({
 };
 ```
 
+### D. Component Watermark Kênh Tối Giản (Watermark.tsx)
+Hiển thị **DUY NHẤT** biểu tượng Avatar tròn của Mascot kênh với viền vàng ánh kim và bóng đổ điện ảnh, tuyệt đối không chèn text tên kênh:
+
+```tsx
+// src/components/Watermark.tsx
+import React from 'react';
+import { Img, staticFile } from 'remotion';
+
+export const ChannelWatermark: React.FC = () => {
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        bottom: 32,
+        right: 36,
+        zIndex: 999,
+        pointerEvents: 'none',
+      }}
+    >
+      <div
+        style={{
+          width: 64,
+          height: 64,
+          borderRadius: '50%',
+          overflow: 'hidden',
+          border: '2.5px solid rgba(255, 215, 0, 0.85)',
+          boxShadow: '0 6px 18px rgba(0,0,0,0.5)',
+          backgroundColor: '#111827',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Img
+          src={staticFile('avatar_stickman_channel.jpg')}
+          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+          onError={(e) => {
+            (e.target as HTMLElement).style.display = 'none';
+          }}
+        />
+        <span style={{ position: 'absolute', fontSize: 24, pointerEvents: 'none' }}>⚔️</span>
+      </div>
+    </div>
+  );
+};
+```
+
 ---
 
 ## 3. Lắp Ráp Root.tsx Chuẩn Song Ngữ & Master Continuous Audio
@@ -424,6 +471,7 @@ import './index.css';
 import React from 'react';
 import { Composition, Sequence, Audio, staticFile } from 'remotion';
 import { ImageScene } from './components/ImageScene';
+import { ChannelWatermark } from './components/Watermark';
 import scenesDataVI from '../scenes.json';
 import scenesDataEN from '../scenes_en.json';
 
@@ -452,6 +500,7 @@ export const TopicLandscapeEN: React.FC = () => {
           </Sequence>
         );
       })}
+      <ChannelWatermark />
     </>
   );
 };
@@ -477,6 +526,7 @@ export const TopicLandscapeVI: React.FC = () => {
           </Sequence>
         );
       })}
+      <ChannelWatermark />
     </>
   );
 };

@@ -94,7 +94,7 @@ Voiceover: Sau một trận huyết chiến đẫm máu, người chiến binh V
 Voiceover: Vài phút sau, bà cúi sát mặt xuống vết thương hở và ngửi thật kỹ. Đây chính là hệ thống phân loại cấp cứu y học chiến trường thông minh nhất thế giới cổ đại.
 
 [SCENE 3 - 0:45] [DIAGRAM: mặt cắt khoang bụng, dạ dày và vi khuẩn đường ruột]
-Voiceover: Nếu bà ngửi thấy mùi hành tây thoát ra từ vết thương hở, điều đó đồng nghĩa với việc thành dạ dày hoặc ruột đã bị thủng. Trong thời đại chưa có kháng sinh, vi khuẩn đường ruột tràn ra sẽ gây nhiễm trùng phúc mạc chắc chắn dẫn đến tử vong trong đau đớn.
+Voiceover: Nếu bà ngửi thấy mùi hành tây thoát ra từ vết thương hở, điều đó đồng nghĩa với việc thành dạ dày hoặc ruột đã bị thủng. Trong thời đại chưa có kháng sinh, vi khuẩn đường ruột tràn ra sẽ gây viêm phúc mạc chắc chắn dẫn đến tử vong trong đau đớn.
 
 [SCENE 4 - 1:15] [PROPS: thảo dược giảm đau sáp ong vs rêu đầm lầy Sphagnum]
 Voiceover: Nữ lang y sẽ không lãng phí thảo dược quý giá mà cho chiến binh uống thuốc giảm đau từ vỏ cây liễu để ra đi nhẹ nhàng. Nhưng nếu KHÔNG có mùi hành, đó chỉ là vết rách cơ — bà sẽ dùng rêu đầm lầy Sphagnum kháng khuẩn và sáp ong để băng bó, cứu sống sinh mạng người lính.
@@ -102,7 +102,28 @@ Voiceover: Nữ lang y sẽ không lãng phí thảo dược quý giá mà cho c
 
 ---
 
-## 5. Quy Chuẩn Tốc Độ Thoại & Phân Đoạn Cho Remotion
+## 5. Kịch Bản Mẫu 4 (Định Hướng Hiện Đại vs Cổ Đại): Nhà Ấm 18°C Tiền Điện = 0 Giữa Bão Tuyết
+
+```markdown
+# Topic: Viking Turf House Zero-Energy Heating
+# Hook: Người hiện đại tốn hàng ngàn đô tiền sưởi mùa đông, vậy người Viking giữ nhà ấm 18°C giữa bão tuyết -30°C mà tiền điện bằng 0 như thế nào?
+
+[SCENE 1 - 0:00] [STICKMAN: người hiện đại co ro trong chăn run rẩy nhìn hóa đơn tiền điện đỏ rực]
+Voiceover: Mùa đông đến, hóa đơn tiền điện và tiền sưởi tăng chóng mặt. Chỉ cần mất điện vài tiếng, ngôi nhà bê tông hiện đại sẽ biến thành chiếc tủ lạnh buốt giá.
+
+[SCENE 2 - 0:18] [STICKMAN: chiến binh Viking ngồi uống súp ấm áp trong nhà cỏ giữa bão tuyết Bắc Cực]
+Voiceover: Nhưng 1,000 năm trước tại Iceland, giữa vùng đất bão tuyết -30°C và hoàn toàn không có lấy một cái cây để lấy củi, người Viking vẫn giữ cho ngôi nhà của mình ấm áp ở mức 18°C — với chi phí năng lượng đúng bằng 0.
+
+[SCENE 3 - 0:45] [DIAGRAM: mặt cắt tường cỏ than bùn với hàng triệu túi khí vi sinh]
+Voiceover: Bí mật nằm ở kiến trúc nhà cỏ than bùn Turf House. Những bức tường dày tới 2 mét được cắt từ rễ cỏ đầm lầy đan bện chằng chịt, tạo ra chỉ số cách nhiệt R-value gấp 5 lần tường gạch bê tông hiện đại.
+
+[SCENE 4 - 1:15] [DIAGRAM: mặt cắt sàn nhà với đàn bò 20 con tỏa nhiệt 38.5°C bên dưới]
+Voiceover: Đỉnh cao hơn, người Viking thiết kế chuồng gia súc ngay dưới sàn phòng khách. Thân nhiệt 38.5°C của 20 con bò bốc lên liên tục đóng vai trò như một hệ thống sưởi sàn sinh học tự nhiên hoạt động 24/7.
+```
+
+---
+
+## 6. Quy Chuẩn Tốc Độ Thoại & Phân Đoạn Cho Remotion
 - **Tốc độ đọc**: ~2.2 - 2.5 từ/giây (khoảng 130 - 150 từ/phút).
 - **Độ dài câu**: Mỗi câu kịch bản ngắn gọn từ 12 đến 20 từ, tương đương 1 scene 3-6 giây trong Remotion.
 - **Visual Callout Tags**:

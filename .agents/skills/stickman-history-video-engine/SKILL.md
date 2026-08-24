@@ -9,40 +9,27 @@ Pipeline sản xuất video YouTube chủ đề lịch sử, khảo cổ học, 
 
 ---
 
-## ⚡ KHO CHỦ ĐỀ GỢI Ý CHUYÊN SÂU "LÀM THẾ NÀO..." VỀ NGƯỜI VIKING
+## ⚡ ENGINE SINH CHỦ ĐỀ ĐỘNG & KIỂM TRA CHỐNG TRÙNG LẶP
 
-Khi người dùng yêu cầu gợi ý chủ đề, **LUÔN áp dụng Công Thức "Làm Thế Nào..." (The How-Did-They Framework)** và tham chiếu `references/viking-topics.md`.
+Khi người dùng yêu cầu gợi ý chủ đề mới:
+
+1. **BẮT BUỘC ĐỌC LỊCH SỬ**: Đọc `references/topic-history.md` để lấy danh sách các topic đã sản xuất $\rightarrow$ Tuyệt đối không đề xuất lại chủ đề hoặc cơ chế đã làm.
+2. **SINH ĐỘNG 3-5 CHỦ ĐỀ MỚI**: Áp dụng **Framework "Vấn Đề Hiện Đại $\rightarrow$ Giải Pháp Viking"** (tham chiếu công thức và các case study mẫu tại `references/viking-topics.md`) để sinh động các ý tưởng mới toanh đánh vào các nỗi đau thiết thực của người xem hiện đại.
+3. **LƯU NHẬT KÝ NGAY KHI DUYỆT**: Khi người dùng chọn 1 topic, lập tức thêm một dòng mới vào bảng trong `references/topic-history.md` với trạng thái `[IN_PROGRESS]`.
 
 ### 🎯 Công thức đặt câu hỏi chủ đề chuẩn:
-> `Làm thế nào người Viking [Kỳ tích sinh tồn / Chinh phục phi thường] khi / mà [Nghịch cảnh cực đoan / Rào cản tưởng như bất khả thi]?`
+> `[Vấn đề nan giải ở thời hiện đại] + [Người Viking đã xử lý như thế nào mà không cần công nghệ hiện đại]?`
 
 ---
 
-### 🧭 Nhóm 1: Hàng Hải, Định Vị & Hải Trình Băng Giá
-1. **Hòn Đá Mặt Trời**: *Làm thế nào người Viking định vị giữa mù khơi Bắc Cực khi không có la bàn từ tính?* (Quang học phân cực tinh thể Iceland Spar Calcite + đĩa Uunartoq + quạ đen Hrafna-Flóki).
-2. **Kỹ Thuật Thuyền Rồng**: *Làm thế nào người Viking đóng những con thuyền dẻo như cá voi lướt sóng ngàn dặm mà không bị gãy đôi?* (Chẻ gỗ sồi xuyên tâm + đinh tán sắt mềm + len tẩm hắc ín nở trong nước).
-3. **Chinh Phục Bắc Mỹ**: *Làm thế nào người Viking vượt Đại Tây Dương đến châu Mỹ trước Columbus 500 năm trên thuyền gỗ hở boong?* (Chiến thuật nhảy đảo + săn ngà hải mã + dấu vết bão mặt trời Miyake 1021 CN).
-4. **Vượt Cạn Xuyên Rừng**: *Làm thế nào người Viking kéo những hạm đội thuyền rồng vượt cạn hàng trăm kilômét xuyên rừng rậm nước Nga?* (Con lăn gỗ bôi trơn mỡ động vật + thiết kế thân tàu siêu nhẹ 3 tấn).
+### 💡 4 Trụ Cột Đời Sống Để Sinh Ý Tưởng Động (Dynamic Ideation Pillars):
+- **🏃 Trụ cột 1: Thể Lực, Sức Khỏe & Y Học Thường Nhật** (Đau lưng do ngồi nhiều, kiệt sức, mất ngủ mùa đông, vi khuẩn kháng thuốc, rụng tóc / da liễu do hóa chất...).
+- **🥩 Trụ cột 2: Dinh Dưỡng, Ăn Uống & Bảo Quản Không Điện** (Mất điện hỏng thực phẩm, chất bảo quản công nghiệp, viêm loét dạ dày, say rượu nôn nao, thiếu vi chất...).
+- **🏠 Trụ cột 3: Nhà Ở, Năng Lượng & Thiết Bị Sinh Tồn** (Hóa đơn tiền điện/sưởi đắt đỏ, áo mưa rách nát / vi nhựa, mất sóng GPS, bão lũ ngập úng, lọc nước ngọt...).
+- **👥 Trụ cột 4: Quản Trị Đội Ngũ, Xã Hội & Tài Chính** (Quản lý nhân sự khó bảo, mâu thuẫn tranh chấp đất đai / hợp đồng, lạm phát mất giá tiền, stress & khủng hoảng tâm lý...).
 
-### ❄️ Nhóm 2: Sinh Tồn Cực Hàn, Dinh Dưỡng & Y Học Cổ
-5. **Sống Sót Trên Biển Băng**: *Làm thế nào người Viking sống sót qua bão tuyết -30°C trên biển băng mà tuyệt đối không được dùng lửa?* (Vải len Vaðmál ngâm mỡ cừu Lanolin + động cơ 6000 kcal sinh nhiệt nội sinh + túi ngủ Skinnfeldr).
-6. **Cá Tuyết Khô 10 Năm**: *Làm thế nào người Viking bảo quản cá suốt 10 năm không hỏng mà không cần một hạt muối hay tủ lạnh?* (Công nghệ thăng hoa gió lạnh Lofoten + 80% protein tinh khiết).
-7. **Bát Súp Hành Tây Tử Thần**: *Làm thế nào các nữ lang y Viking chẩn đoán vết thương thủng ruột trên chiến trường chỉ bằng một bát súp hành tây?* (Phân loại cấp cứu triage bằng khứu giác + rêu đầm lầy Sphagnum kháng sinh).
-8. **Nhà Cỏ Than Bùn (Turf House)**: *Làm thế nào người Viking xây nhà ấm 15°C giữa bão tuyết ở vùng đất không có lấy một cây gỗ?* (Hệ số cách nhiệt R-value của rễ cỏ than bùn + cộng sinh thân nhiệt đàn gia súc).
-
-### ⚔️ Nhóm 3: Luyện Kim, Vũ Khí & Khoa Học Chiến Trận
-9. **Thanh Kiếm Thần Ulfberht**: *Làm thế nào người Viking tạo ra thanh kiếm thép đúc tinh khiết 1500°C vượt trước thời đại 800 năm?* (Lò nấu kín Crucible Steel + tuyến đường sông Volga trao đổi phôi thép Damascus + rãnh thoát lực Fuller).
-10. **Sắt Đầm Lầy (Bog Iron)**: *Làm thế nào người Viking "gặt hái" hàng triệu tấn sắt từ bùn lầy vi sinh thay vì đào mỏ sâu?* (Vi khuẩn Gallionella kết tủa sắt + lò nung đất sét Bloomer).
-11. **Chất Điên Cuồng Berserker**: *Làm thế nào một loại hạt cây độc biến chiến binh Berserker thành cỗ máy chiến tranh không biết đau?* (Alkaloid Scopolamine trong cây Henbane + phong tỏa thụ thể cảm giác não bộ).
-12. **Vật Lý Bức Tường Khiên**: *Làm thế nào bức tường khiên gỗ mềm 8mm của người Viking chặn đứng kỵ binh hạng nặng?* (Biến dạng đàn hồi của gỗ bồ đề + viền da sống co ngót siết ứng suất trước + khóa khiên so le).
-13. **Rìu Hai Tay Dane Axe**: *Làm thế nào chiếc rìu Dane Axe mỏng nhẹ có thể chẻ đôi khiên giáp chỉ trong một nhát chém?* (Đòn bẩy cán dài 1.5m + lưỡi nêm mỏng áp suất nghìn PSI + mép hàn thép tôi cứng).
-
-### 🏛️ Nhóm 4: Xã Hội, Luật Pháp & Sự Biến Mất Bí Ẩn
-14. **Quốc Hội Althing Năm 930**: *Làm thế nào người Viking vận hành một nền dân chủ không cần vua hay quân đội thường trực suốt 300 năm?* (Người ngâm luật thuộc lòng + quyền lực pháp lý phụ nữ Viking + luật trục xuất Outlawry).
-15. **Đồng Bạc Baghdad Dưới Mộ Cổ**: *Làm thế nào hàng vạn đồng bạc Hồi giáo Baghdad lại được chôn giấu dưới các nấm mộ Viking ở Bắc Âu?* (Nền kinh tế cân bạc mảnh Hack-Silver + tuyến hàng hải sông Volga - Biển Caspi).
-16. **Bí Ẩn Diệt Vong Tại Greenland**: *Làm thế nào một thuộc địa Viking 400 trang trại đột ngột biến mất không dấu vết sau 500 năm hưng thịnh?* (Tiểu Băng Hà + bẫy cứng nhắc văn hóa từ chối học người Inuit + ngà hải mã sụt giá).
-
-> Chi tiết phân tích khoa học 4 lớp, hiện vật khảo cổ và prompt hình ảnh của từng chủ đề xem tại: `references/viking-topics.md`.
+> Danh sách case study mẫu và phân tích 4 lớp khoa học xem tại: `references/viking-topics.md`.
+> Nhật ký các topic đã duyệt / đã sản xuất xem tại: `references/topic-history.md`.
 
 ---
 
@@ -75,7 +62,7 @@ Khi người dùng yêu cầu gợi ý chủ đề, **LUÔN áp dụng Công Th�
 - **Cắt chuyển cảnh chuẩn xác**: Dùng `ffmpeg silencedetect` để xác định chính xác các khoảng lặng tự nhiên giữa các câu đọc.
 
 ### 5. Nhận Diện Kênh & Bố Cục Hình Ảnh (Channel Watermark & Cinematic Motion)
-- **Channel Avatar Watermark**: Hiển thị avatar tròn của kênh (`avatar_stickman_channel.jpg`) cố định ở góc phải dưới (`bottom: 32px, right: 36px`) trên layer cao nhất (`zIndex: 999`) xuyên suốt toàn bộ video.
+- **Channel Avatar Watermark**: Hiển thị DUY NHẤT avatar tròn của kênh (`avatar_stickman_channel.jpg`, đường kính 64px, viền vàng kim `2.5px solid rgba(255, 215, 0, 0.85)` và bóng đổ điện ảnh `box-shadow`) cố định ở góc phải dưới (`bottom: 32px, right: 36px`) trên layer cao nhất (`zIndex: 999`) xuyên suốt toàn bộ video. **TUYỆT ĐỐI KHÔNG chèn thêm text tên kênh hay thanh nền** để giữ bố cục video tối giản, sang trọng và không che khuất nội dung hình ảnh.
 - **Hiệu ứng Camera Điện Ảnh**: Luân phiên 6 hướng camera Ken Burns (`zoom-in`, `zoom-out`, `pan-left`, `pan-right`, `zoom-in-tilt`, `pan-up`) kết hợp rung nhẹ tự nhiên (`camera breathing`) và mờ chuyển cảnh nhẹ nhàng (4 frames fade-in).
 
 ---
@@ -96,13 +83,14 @@ Khi người dùng yêu cầu gợi ý chủ đề, **LUÔN áp dụng Công Th�
 ---
 
 ### Bước 1-2: Ý tưởng + Kịch bản Song Ngữ
-- Đọc `references/viking-topics.md` và `references/script-writing.md`.
-- Output: 1 chủ đề Viking nghịch lý + kịch bản 5 phần chuẩn:
-  1. **The Paradox Hook**: Đập tan định kiến + đặt nghịch lý sinh tồn / kỹ thuật không tưởng.
+- **Kiểm tra chống trùng**: Đọc `references/topic-history.md` $\rightarrow$ sinh động 3-5 ý tưởng mới theo 4 trụ cột đời sống dựa trên `references/viking-topics.md`.
+- **Ghi log khi duyệt**: Ngay khi user duyệt chọn 1 topic, ghi 1 dòng mới vào `references/topic-history.md` (`[IN_PROGRESS]`).
+- **Viết kịch bản**: Đọc `references/script-writing.md` để viết kịch bản 5 phần chuẩn:
+  1. **The Paradox Hook**: Đặt ra vấn đề nan giải thời hiện đại $\rightarrow$ nghịch lý người Viking xử lý mà không cần công nghệ hiện đại.
   2. **The Threat Physics**: Phân tích điều kiện khắc nghiệt của Bắc Cực / hải trình / chiến trận.
   3. **The 4-Layer System**: Bóc tách 4 tầng giải pháp của người Viking (Vật liệu $\rightarrow$ Sinh học $\rightarrow$ Kỹ thuật $\rightarrow$ Kỷ luật).
   4. **Experimental Proof**: Bằng chứng khảo cổ học (Oseberg, Gokstad, L'Anse aux Meadows, Ulfberht...) & tái hiện thực nghiệm.
-  5. **The Mindset Payoff**: Đúc kết trí tuệ thích nghi của người Viking.
+  5. **The Mindset Payoff**: Đúc kết bài học thích nghi cho con người thời nay.
 - Xuất thành `<topic-folder>/voText_en.md` và `<topic-folder>/voText_en.txt`.
 
 ---
@@ -125,7 +113,7 @@ Khi người dùng yêu cầu gợi ý chủ đề, **LUÔN áp dụng Công Th�
 ### Bước 5: Scaffold Standalone Project
 - Đọc `references/remotion-scaffold.md`.
 - Tạo folder độc lập `<topic-folder>/` với `package.json`, `tsconfig.json`, `remotion.config.ts`, `src/Root.tsx`, `src/index.ts`, `src/index.css`.
-- Cài đặt persistent **Channel Avatar Watermark** (`avatar_stickman_channel.jpg`) ở góc phải dưới (`bottom: 32px, right: 36px`).
+- Cài đặt **Channel Avatar Watermark** chỉ hiển thị duy nhất avatar tròn Mascot (`avatar_stickman_channel.jpg`) ở góc phải dưới (`bottom: 32px, right: 36px`), không kèm text tên kênh.
 - Tích hợp **Smart Image Fallback** trong `ImageScene.tsx`.
 - Chạy `npm install` bên trong folder video.
 
