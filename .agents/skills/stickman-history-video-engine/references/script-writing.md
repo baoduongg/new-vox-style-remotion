@@ -4,6 +4,17 @@ Kịch bản cho phong cách **Stickman History / Ancient Survival** về thời
 
 ---
 
+## 🌐 0. Quy Định Ngôn Ngữ Kịch Bản (Default: English)
+- **Mặc định là Tiếng Anh (English)**:
+  - File kịch bản xuất bản: `<topic-folder>/voText_en.md` và `<topic-folder>/voText_en.txt`.
+  - Phân cảnh timing: `<topic-folder>/scenes.json` chứa `voText` tiếng Anh chuẩn ngữ điệu tự nhiên, từ vựng mạnh mẽ, cấu trúc câu súc tích.
+- **Khi dự án chọn Tiếng Việt (hoặc ngôn ngữ khác)**:
+  - File kịch bản xuất bản: `<topic-folder>/voText_vi.md` và `<topic-folder>/voText_vi.txt`.
+  - Phân cảnh timing: `<topic-folder>/scenes.json` chứa `voText` tiếng Việt có dấu chuẩn, văn phong hấp dẫn, giữ trọn vẹn thuật ngữ khoa học giải thích dễ hiểu.
+- **Đồng bộ hóa**: Ngôn ngữ của kịch bản là kim chỉ nam để tạo Voiceover Audio và làm căn cứ để đưa các nhãn văn bản (Labels/Headers/Diagram text) vào trong Prompt tạo ảnh AI.
+
+---
+
 ## 1. Công Thức Kịch Bản 5 Phần Chuẩn
 
 ```

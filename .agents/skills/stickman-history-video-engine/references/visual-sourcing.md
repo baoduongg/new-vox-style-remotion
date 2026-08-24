@@ -10,21 +10,28 @@ Tài liệu hướng dẫn tạo hình ảnh cho video **Stickman History & Anci
 
 ### 📋 Cấu Trúc 4 Thành Phần:
 ```text
-Clean 2D vector cartoon animated documentary style illustration, in the style of Ancient World Uncovered and Before Civilization. [Subject & Expressive White Round-Headed Stickman Characters with Bold Black Outlines]. [Rich 2D Cartoon Background & Lighting]. [Historical Props / Tools / Vehicles / Technical Insets]. Smooth clean line art, vibrant flat colors with soft cel-shading, playful historical educational aesthetic. All visible text and labels must be strictly in clear English typography with Latin alphabet only, 16:9 widescreen.
+Clean 2D vector cartoon animated documentary style illustration, in the style of Ancient World Uncovered and Before Civilization. [Subject & Expressive White Round-Headed Stickman Characters with Bold Black Outlines]. [Rich 2D Cartoon Background & Lighting]. [Historical Props / Tools / Vehicles / Technical Insets]. Smooth clean line art, vibrant flat colors with soft cel-shading, playful historical educational aesthetic. [Language & Typography Constraint for In-Image Text]. 16:9 widescreen.
 ```
 
 ### ⚠️ Quy Tắc Bắt Buộc:
 1. **Phong cách**: BẮT ĐẦU bằng `Clean 2D vector cartoon animated documentary style illustration, in the style of Ancient World Uncovered and Before Civilization.`
 2. **Nhân vật**: `Expressive white round-headed stickman with bold black vector outlines and thin stick limbs, wearing [Viking/Period Clothing]`.
 3. **Cấm dùng**: KHÔNG dùng các từ như `parchment paper, charcoal sketch, vintage manuscript, textured grain, tea-stained, Renaissance etching`. Thay vào đó, dùng `Clean colorful 2D vector cartoon background, flat colors, soft cel-shading`.
-4. **Văn bản & Nhãn**: 100% tiếng Anh Latin, font hoạt hình rõ ràng. Luôn kết thúc bằng:
-   `All visible text and labels must be strictly in clear English typography with Latin alphabet only, 16:9 widescreen.`
+4. **Văn bản & Nhãn trong ảnh (In-Image Text & Labels)**:
+   - Thân prompt mô tả nghệ thuật luôn viết bằng tiếng Anh để AI hiểu rõ nhất.
+   - Mọi văn bản, tiêu đề, nhãn số liệu, chú thích sơ đồ hiển thị trong ảnh **BẮT BUỘC theo đúng ngôn ngữ dự án đã xác định**:
+     - *Dự án Tiếng Anh (Mặc định)*:
+       `All visible text, labels, infographics, and diagram annotations must be strictly in clear English typography with Latin alphabet only, absolutely no Runic, Arabic, Old Norse, or illegible script, 16:9 widescreen.`
+     - *Dự án Tiếng Việt*:
+       `All visible text, headers, and diagram labels must be strictly in clear Vietnamese typography with correct diacritics (Latin alphabet only, e.g., 'NHIỆT ĐỘ: 1500°C', 'SƠ ĐỒ HẢI TRÌNH'), 16:9 widescreen.`
+     - *Dự án Ngôn ngữ khác*:
+       `All visible text and labels must be strictly in clear [Target Language] typography, 16:9 widescreen.`
 
 ---
 
 ## 🎨 2. Thư Viện Prompt Mẫu (2D Vector Cartoon Examples)
 
-### A. Thuyền Viking Vượt Bão Tuyết Bắc Cực (Freezing Blizzard Longship)
+### A. Thuyền Viking Vượt Bão Tuyết Bắc Cực (Freezing Blizzard Longship - English)
 ```text
 Clean 2D vector cartoon animated documentary style illustration, in the style of Ancient World Uncovered. A detailed wooden Viking longship with a carved dragon prow battling stormy dark ocean waves. Inside the boat, five expressive white round-headed stickman Viking sailors are shivering in the freezing snowstorm, wrapped in thick wool blankets and cloaks, with dark tired bags under their eyes, trembling squiggly lines around them. Dark stormy navy-blue sky with falling white snowflakes and distant floating icebergs. Crisp bold black vector outlines, vibrant flat colors, smooth cel-shading. All visible text strictly in clear English typography, 16:9 widescreen.
 ```
@@ -34,9 +41,9 @@ Clean 2D vector cartoon animated documentary style illustration, in the style of
 Clean 2D vector cartoon animated documentary style illustration, in the style of Ancient World Uncovered. A wooden Viking longship sailing peacefully on calm light-blue ocean waters under a clear sky. The ship features a striking red-and-cream vertically striped square sail catching the wind and wooden shields mounted on the gunwale. Onboard are three stickman characters: a Viking captain with a brown beard steering with a side oar, a crewman adjusting the sail rigging, and a stickman sitting and studying an unfolded navigation map. Crisp bold black outlines, cheerful flat colors with soft shading. 16:9 widescreen.
 ```
 
-### C. Người Tiền Sử Bên Lửa Trại Savan (Prehistoric Savanna & Campfire)
+### C. Người Tiền Sử Bên Lửa Trại Savan (Prehistoric Savanna & Campfire - Tiếng Việt mẫu)
 ```text
-Clean 2D vector cartoon animated documentary style illustration, in the style of Before Civilization. An open golden savanna landscape under a bright pale blue sky with stylized acacia trees and a big round golden sun. A group of expressive prehistoric stickmen with simple leopard-print and ragged brown animal hides gathered around a crackling campfire, holding stone spears and wooden clubs. At the top, a clean bold cartoon text header: 'EARLY HUMANS: SURVIVAL AND FIRE'. Bold black vector line art, vibrant warm palette, soft cel-shading. 16:9 widescreen.
+Clean 2D vector cartoon animated documentary style illustration, in the style of Before Civilization. An open golden savanna landscape under a bright pale blue sky with stylized acacia trees and a big round golden sun. A group of expressive prehistoric stickmen with simple leopard-print and ragged brown animal hides gathered around a crackling campfire, holding stone spears and wooden clubs. At the top, a clean bold cartoon text header: 'NGƯỜI TIỀN SỬ: SINH TỒN VÀ LỬA'. Bold black vector line art, vibrant warm palette, soft cel-shading. All visible text and labels strictly in clear Vietnamese typography with correct diacritics, 16:9 widescreen.
 ```
 
 ---
