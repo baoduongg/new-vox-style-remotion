@@ -1,0 +1,848 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Video Pipeline</title>
+<style>
+  @font-face {
+    font-family: "Geist";
+    src: local("Geist"), local("Geist-Regular");
+    font-weight: 300 700;
+  }
+
+  :root {
+    --bg: #08090b;
+    --surface: #101215;
+    --surface-raised: #16181c;
+    --hairline: rgba(255, 255, 255, 0.08);
+    --hairline-strong: rgba(255, 255, 255, 0.14);
+    --text-primary: #eef0f2;
+    --text-secondary: #9a9fa6;
+    --text-tertiary: #5c6066;
+    --accent: #7ee08a;
+    --accent-dim: rgba(126, 224, 138, 0.12);
+    --amber: #e0b97e;
+    --amber-dim: rgba(224, 185, 126, 0.12);
+    --radius-lg: 20px;
+    --radius-md: 14px;
+    --radius-sm: 8px;
+    --mono: "SF Mono", "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+    --sans: -apple-system, "Segoe UI", "Cabinet Grotesk", "Outfit", system-ui, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    min-height: 100dvh;
+    background-image:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(126, 224, 138, 0.06), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 90% 10%, rgba(224, 185, 126, 0.04), transparent 60%);
+    background-attachment: fixed;
+  }
+
+  .shell {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px 96px;
+  }
+
+  /* ---------- Header ---------- */
+
+  header.top {
+    padding: 40px 0 32px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    border-bottom: 1px solid var(--hairline);
+    margin-bottom: 40px;
+  }
+
+  .brand {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .brand-mark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .brand-mark svg { display: block; }
+
+  .brand-mark span {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-tertiary);
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.15;
+  }
+
+  .top-stats {
+    display: flex;
+    gap: 28px;
+  }
+
+  .stat {
+    text-align: right;
+  }
+
+  .stat .num {
+    font-family: var(--mono);
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .stat .label {
+    margin-top: 6px;
+    font-size: 11px;
+    color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* ---------- Grid ---------- */
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+  }
+
+  .card {
+    position: relative;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(180deg, var(--surface-raised), var(--surface));
+    border: 1px solid var(--hairline);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(18px);
+    animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .card.featured { grid-column: span 4; }
+  .card.compact { grid-column: span 2; }
+
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: 1fr; }
+    .card.featured, .card.compact { grid-column: span 1; }
+  }
+
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card { animation: none; opacity: 1; transform: none; }
+  }
+
+  /* Featured card layout */
+  .card.featured .media {
+    position: relative;
+    aspect-ratio: 16/9;
+    background: #000;
+    overflow: hidden;
+  }
+
+  .card.featured .media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .card.featured:hover .media img {
+    transform: scale(1.035);
+  }
+
+  .media-scrim {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.65) 100%);
+    pointer-events: none;
+  }
+
+  .status-pill {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px 6px 10px;
+    border-radius: 999px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.14);
+  }
+
+  .status-pill.rendered { background: rgba(126, 224, 138, 0.16); color: #b7f0bd; }
+  .status-pill.scripted { background: rgba(224, 185, 126, 0.16); color: #f0d9b5; }
+  .status-pill.scaffold { background: rgba(255, 255, 255, 0.08); color: var(--text-secondary); }
+
+  .status-pill .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+  }
+
+  .duration-badge {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    padding: 5px 10px;
+    border-radius: var(--radius-sm);
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    font-family: var(--mono);
+    font-size: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .card-body {
+    padding: 24px 26px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .card-title {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .card-title h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .card-title .path {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-tertiary);
+    white-space: nowrap;
+  }
+
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .meta-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 11px;
+    border-radius: var(--radius-sm);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--hairline);
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-family: var(--mono);
+  }
+
+  .meta-chip svg { opacity: 0.6; flex-shrink: 0; }
+
+  .lang-row {
+    display: flex;
+    gap: 6px;
+  }
+
+  .lang-tag {
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: var(--accent-dim);
+    color: var(--accent);
+    font-family: var(--mono);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .card-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid var(--hairline-strong);
+    color: var(--text-primary);
+    background: rgba(255,255,255,0.03);
+    transition: transform 0.35s cubic-bezier(0.32,0.72,0,1), background 0.35s cubic-bezier(0.32,0.72,0,1), border-color 0.35s cubic-bezier(0.32,0.72,0,1);
+    cursor: pointer;
+  }
+
+  .btn:hover {
+    background: rgba(255,255,255,0.07);
+    border-color: rgba(255,255,255,0.22);
+    transform: translateY(-1px);
+  }
+
+  .btn:active { transform: translateY(0) scale(0.98); }
+
+  .btn:disabled { opacity: 0.6; cursor: wait; }
+  .btn:disabled:hover { transform: none; }
+
+  .spin { animation: spin 0.9s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { .spin { animation: none; } }
+
+  /* ---------- Studio launch overlay ---------- */
+
+  .studio-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 80;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(6, 7, 8, 0.72);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s cubic-bezier(0.32,0.72,0,1);
+  }
+
+  .studio-overlay.visible { opacity: 1; pointer-events: auto; }
+
+  .studio-overlay-panel {
+    width: min(420px, calc(100% - 48px));
+    padding: 36px 32px 32px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(180deg, var(--surface-raised), var(--surface));
+    border: 1px solid var(--hairline-strong);
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    transform: translateY(14px) scale(0.98);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .studio-overlay.visible .studio-overlay-panel {
+    transform: translateY(0) scale(1);
+  }
+
+  .overlay-ring {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 2px solid var(--hairline-strong);
+    border-top-color: var(--accent);
+    animation: spin 0.8s cubic-bezier(0.5,0,0.5,1) infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .overlay-ring { animation: none; border-top-color: var(--hairline-strong); }
+  }
+
+  .studio-overlay.error .overlay-ring {
+    border-top-color: #e0807e;
+    animation: none;
+  }
+
+  .overlay-title {
+    font-size: 17px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .overlay-project {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-tertiary);
+    margin-top: 6px;
+  }
+
+  .overlay-status {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    min-height: 20px;
+  }
+
+  .studio-overlay.error .overlay-status {
+    color: #f0b3b1;
+  }
+
+  .overlay-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .btn.primary {
+    background: var(--accent);
+    color: #06210d;
+    border-color: var(--accent);
+  }
+
+  .btn.primary:hover {
+    background: #8ee998;
+  }
+
+  .btn .icon-wrap {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.35s cubic-bezier(0.32,0.72,0,1);
+  }
+
+  .btn.primary .icon-wrap { background: rgba(6,33,13,0.18); }
+  .btn:not(.primary) .icon-wrap { background: rgba(255,255,255,0.06); }
+
+  .btn:hover .icon-wrap { transform: translate(1px, -1px) scale(1.05); }
+
+  /* Compact / scaffold card */
+  .card.compact {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .compact .placeholder-media {
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      repeating-linear-gradient(135deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 14px),
+      var(--surface);
+    border-bottom: 1px solid var(--hairline);
+    color: var(--text-tertiary);
+  }
+
+  .compact .card-body { padding: 22px 24px 24px; gap: 16px; flex: 1; }
+
+  .empty-note {
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ---------- New project ghost card ---------- */
+
+  .card.ghost {
+    grid-column: span 2;
+    border: 1px dashed var(--hairline-strong);
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 260px;
+    text-align: center;
+    padding: 32px;
+  }
+
+  @media (max-width: 900px) { .card.ghost { grid-column: span 1; } }
+
+  .ghost-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    color: var(--text-tertiary);
+  }
+
+  .ghost-inner .ring {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--hairline-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ghost-inner p {
+    margin: 0;
+    font-size: 13px;
+    max-width: 32ch;
+    line-height: 1.5;
+  }
+
+  .ghost-inner code {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-secondary);
+    background: rgba(255,255,255,0.05);
+    padding: 2px 7px;
+    border-radius: 6px;
+  }
+
+  /* ---------- Footer ---------- */
+
+  footer {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--hairline);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-tertiary);
+  }
+
+  footer button {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-secondary);
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--hairline);
+    padding: 7px 13px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  footer button:hover { background: rgba(255,255,255,0.08); color: var(--text-primary); }
+</style>
+</head>
+<body>
+  <div class="shell">
+    <header class="top">
+      <div class="brand">
+        <div class="brand-mark">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+            <rect x="1" y="1" width="20" height="20" rx="6" stroke="#7ee08a" stroke-width="1.3" opacity="0.5"/>
+            <path d="M8.5 7.5L14.5 11L8.5 14.5V7.5Z" fill="#7ee08a"/>
+          </svg>
+          <span>Video Pipeline</span>
+        </div>
+        <h1>Remotion Projects</h1>
+      </div>
+      <div class="top-stats" id="topStats"></div>
+    </header>
+
+    <main class="grid" id="grid"></main>
+
+    <footer>
+      <span id="generatedAt">--</span>
+      <button id="refreshBtn">Refresh scan</button>
+    </footer>
+  </div>
+
+  <div class="studio-overlay" id="studioOverlay">
+    <div class="studio-overlay-panel">
+      <div class="overlay-ring" id="overlayRing"></div>
+      <div>
+        <div class="overlay-title" id="overlayTitle">Đang khởi động Remotion Studio</div>
+        <div class="overlay-project" id="overlayProject"></div>
+      </div>
+      <div class="overlay-status" id="overlayStatus">Đang chuẩn bị...</div>
+      <div class="overlay-actions" id="overlayActions" style="display:none;">
+        <button class="btn" id="overlayCloseBtn" type="button">Đóng</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+const ICONS = {
+  scene: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 15l4-4 4 4 6-6 4 4"/></svg>',
+  clock: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+  disk: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>',
+  play: '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>',
+  folder: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7a2 2 0 012-2h4l2 2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V7z"/></svg>',
+  arrow: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>',
+  plus: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14M5 12h14"/></svg>',
+  code: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18l-6-6 6-6M15 6l6 6-6 6"/></svg>',
+  spinner: '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="spin"><path d="M12 3a9 9 0 1 0 9 9" stroke-linecap="round"/></svg>',
+};
+
+const STATUS_LABEL = { rendered: 'Rendered', scripted: 'Scripted', scaffold: 'Scaffold' };
+
+function fmtDate(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  return d.toLocaleDateString('vi-VN', { day: '2-digit', month: 'short', year: 'numeric' });
+}
+
+function renderFeatured(p) {
+  const media = p.thumbnail
+    ? `<img src="${p.thumbnail}" alt="${p.name} thumbnail" loading="lazy" />`
+    : `<div class="placeholder-media" style="aspect-ratio:16/9;border:0;">${ICONS.scene}</div>`;
+
+  const durationBadge = p.duration ? `<div class="duration-badge">${p.duration}</div>` : '';
+
+  const chips = [
+    p.sceneCount ? `<span class="meta-chip">${ICONS.scene}${p.sceneCount} scenes</span>` : '',
+    p.fps ? `<span class="meta-chip">${ICONS.clock}${p.fps}fps</span>` : '',
+    p.renders[0]?.sizeMb ? `<span class="meta-chip">${ICONS.disk}${p.renders[0].sizeMb} MB</span>` : '',
+  ].filter(Boolean).join('');
+
+  const langs = p.languages.length
+    ? `<div class="lang-row">${p.languages.map(l => `<span class="lang-tag">${l}</span>`).join('')}</div>`
+    : '';
+
+  const openRenderBtn = p.renders[0]
+    ? `<a class="btn primary" href="/${p.id}/out/${p.renders[0].file}" target="_blank" rel="noopener"><span class="icon-wrap">${ICONS.play}</span>Play render</a>`
+    : `<span class="btn primary" style="opacity:0.4;pointer-events:none;"><span class="icon-wrap">${ICONS.play}</span>No render yet</span>`;
+
+  return `
+    <article class="card featured" style="animation-delay:${0}ms">
+      <div class="media">
+        ${media}
+        <div class="media-scrim"></div>
+        <div class="status-pill ${p.status}"><span class="dot"></span>${STATUS_LABEL[p.status]}</div>
+        ${durationBadge}
+      </div>
+      <div class="card-body">
+        <div class="card-title">
+          <h2>${p.name}</h2>
+          <span class="path">/${p.id}</span>
+        </div>
+        <div class="meta-row">${chips}</div>
+        ${langs}
+        <div class="card-actions">
+          ${openRenderBtn}
+          <button class="btn open-studio-btn" type="button" data-project="${p.id}"><span class="icon-wrap">${ICONS.code}</span>Open in Studio</button>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function renderCompact(p, delay) {
+  const media = p.thumbnail
+    ? `<div class="placeholder-media" style="padding:0;"><img src="${p.thumbnail}" alt="" style="width:100%;height:100%;object-fit:cover;"/></div>`
+    : `<div class="placeholder-media">${ICONS.scene}</div>`;
+
+  const note = p.status === 'scaffold'
+    ? `<p class="empty-note">Project scaffolded, chưa có scenes.json. Chạy skill để sinh kịch bản và scenes.</p>`
+    : `<p class="empty-note">${p.sceneCount ?? '?'} scenes đã lên kịch bản, chưa render.</p>`;
+
+  return `
+    <article class="card compact" style="animation-delay:${delay}ms">
+      ${media}
+      <div class="card-body">
+        <div class="card-title">
+          <h2 style="font-size:17px;">${p.name}</h2>
+        </div>
+        <div class="status-pill ${p.status}" style="position:static;display:inline-flex;width:fit-content;"><span class="dot"></span>${STATUS_LABEL[p.status]}</div>
+        ${note}
+        <div class="card-actions">
+          <button class="btn primary open-studio-btn" type="button" data-project="${p.id}"><span class="icon-wrap">${ICONS.code}</span>Open in Studio</button>
+          <button class="btn copy-path-btn" type="button" data-path="${p.id}"><span class="icon-wrap">${ICONS.folder}</span>Copy path</button>
+        </div>
+      </div>
+    </article>
+  `;
+}
+
+function renderGhost() {
+  return `
+    <article class="card ghost">
+      <div class="ghost-inner">
+        <div class="ring">${ICONS.plus}</div>
+        <p>Tạo dự án mới bằng skill <code>/stickman-history-video-engine</code>, sau đó chạy lại scan.</p>
+      </div>
+    </article>
+  `;
+}
+
+let PROJECT_ROOT = '';
+
+async function boot() {
+  const res = await fetch('data.json', { cache: 'no-store' });
+  const data = await res.json();
+  const { projects, generatedAt, projectRoot } = data;
+  PROJECT_ROOT = projectRoot;
+
+  const rendered = projects.filter(p => p.status === 'rendered').length;
+  const totalScenes = projects.reduce((s, p) => s + (p.sceneCount || 0), 0);
+
+  document.getElementById('topStats').innerHTML = `
+    <div class="stat"><div class="num">${projects.length}</div><div class="label">Projects</div></div>
+    <div class="stat"><div class="num">${rendered}</div><div class="label">Rendered</div></div>
+    <div class="stat"><div class="num">${totalScenes}</div><div class="label">Scenes total</div></div>
+  `;
+  document.getElementById('generatedAt').textContent = `Last scan: ${fmtDate(generatedAt)}`;
+
+  const gridEl = document.getElementById('grid');
+  let html = '';
+  let delay = 0;
+  projects.forEach((p) => {
+    if (p.status === 'rendered') {
+      html += renderFeatured(p);
+    } else {
+      html += renderCompact(p, delay);
+    }
+    delay += 60;
+  });
+  html += renderGhost();
+  gridEl.innerHTML = html;
+}
+
+document.getElementById('refreshBtn').addEventListener('click', async (e) => {
+  const btn = e.currentTarget;
+  const original = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Scanning...';
+  try {
+    await fetch('/api/rescan', { method: 'POST' });
+  } catch {}
+  location.reload();
+});
+
+document.addEventListener('click', async (e) => {
+  const copyBtn = e.target.closest('.copy-path-btn');
+  if (copyBtn) {
+    const absolutePath = `${PROJECT_ROOT}/${copyBtn.dataset.path}`;
+    try {
+      await navigator.clipboard.writeText(absolutePath);
+      const original = copyBtn.innerHTML;
+      copyBtn.innerHTML = `<span class="icon-wrap">${ICONS.folder}</span>Copied path`;
+      setTimeout(() => { copyBtn.innerHTML = original; }, 1400);
+    } catch {
+      prompt('Copy project path:', absolutePath);
+    }
+    return;
+  }
+
+  const studioBtn = e.target.closest('.open-studio-btn');
+  if (studioBtn) {
+    if (studioBtn.disabled) return;
+    launchStudio(studioBtn.dataset.project, studioBtn);
+  }
+});
+
+// Guards against firing two launches for the same project (double-click,
+// two buttons on the page, or a stray repeat event) and against a single
+// launch ever calling window.open more than once.
+const inFlightLaunches = new Set();
+
+const overlay = document.getElementById('studioOverlay');
+const overlayTitle = document.getElementById('overlayTitle');
+const overlayProject = document.getElementById('overlayProject');
+const overlayStatus = document.getElementById('overlayStatus');
+const overlayActions = document.getElementById('overlayActions');
+const overlayCloseBtn = document.getElementById('overlayCloseBtn');
+
+function showOverlay(projectId) {
+  overlay.classList.remove('error');
+  overlay.classList.add('visible');
+  overlayTitle.textContent = 'Đang khởi động Remotion Studio';
+  overlayProject.textContent = `/${projectId}`;
+  overlayStatus.textContent = 'Đang chuẩn bị...';
+  overlayActions.style.display = 'none';
+}
+
+function setOverlayStatus(text) {
+  overlayStatus.textContent = text;
+}
+
+function setOverlayError(text) {
+  overlay.classList.add('error');
+  overlayTitle.textContent = 'Không mở được Studio';
+  overlayStatus.textContent = text;
+  overlayActions.style.display = 'flex';
+}
+
+function hideOverlay() {
+  overlay.classList.remove('visible', 'error');
+}
+
+overlayCloseBtn.addEventListener('click', hideOverlay);
+
+async function launchStudio(projectId, triggerBtn) {
+  if (inFlightLaunches.has(projectId)) return;
+  inFlightLaunches.add(projectId);
+
+  const original = triggerBtn.innerHTML;
+  triggerBtn.disabled = true;
+  triggerBtn.innerHTML = `<span class="icon-wrap">${ICONS.spinner}</span>Starting Studio...`;
+  showOverlay(projectId);
+
+  let opened = false;
+  try {
+    setOverlayStatus('Đang khởi động tiến trình Remotion...');
+    const res = await fetch(`/api/studio/${projectId}/start`, { method: 'POST' });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Failed to start');
+
+    setOverlayStatus('Đang chờ Studio sẵn sàng, có thể mất vài giây...');
+    await waitForStudioReady(projectId);
+
+    setOverlayStatus('Sẵn sàng. Đang mở tab mới...');
+    if (!opened) {
+      opened = true;
+      window.open(`http://localhost:${data.port}`, '_blank');
+    }
+    hideOverlay();
+  } catch (err) {
+    setOverlayError(`Không mở được Remotion Studio: ${err.message}`);
+  } finally {
+    triggerBtn.disabled = false;
+    triggerBtn.innerHTML = original;
+    inFlightLaunches.delete(projectId);
+  }
+}
+
+async function waitForStudioReady(projectId) {
+  for (let i = 0; i < 60; i++) {
+    const res = await fetch(`/api/studio/${projectId}/status`);
+    const data = await res.json();
+    if (data.status === 'ready') return;
+    if (data.status === 'error') {
+      const lastLine = (data.errorLog || '').trim().split('\n').filter(Boolean).slice(-1)[0];
+      throw new Error(lastLine || 'Studio process crashed');
+    }
+    await new Promise((r) => setTimeout(r, 500));
+  }
+  throw new Error('Timeout khi boot Studio');
+}
+
+boot();
+</script>
+</body>
+</html>

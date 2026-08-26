@@ -1,0 +1,29 @@
+{
+  "generatedAt": "2026-08-26T02:56:06.861Z",
+  "projectRoot": "/Users/dungnb/Projects/new-vox-style-remotion",
+  "projects": [
+    {
+      "id": "viking-monster-strength",
+      "name": "viking-monster-strength",
+      "status": "rendered",
+      "thumbnail": "assets/viking-monster-strength-thumb.jpg",
+      "sceneCount": 50,
+      "fps": 30,
+      "totalFrames": 9000,
+      "duration": "5:00",
+      "languages": [
+        "ko",
+        "en",
+        "vi"
+      ],
+      "renders": [
+        {
+          "file": "video_ko.mp4",
+          "sizeMb": 406
+        }
+      ],
+      "remotionVersion": "4.0.515",
+      "lastModified": "2026-08-24T08:14:52.466Z"
+    }
+  ]
+}
