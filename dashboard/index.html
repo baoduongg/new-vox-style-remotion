@@ -127,12 +127,23 @@
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+    align-items: start;
+  }
+
+  @media (max-width: 1080px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 640px) {
+    .grid { grid-template-columns: 1fr; }
   }
 
   .card {
     position: relative;
+    display: flex;
+    flex-direction: column;
     border-radius: var(--radius-lg);
     background: linear-gradient(180deg, var(--surface-raised), var(--surface));
     border: 1px solid var(--hairline);
@@ -140,14 +151,6 @@
     opacity: 0;
     transform: translateY(18px);
     animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  }
-
-  .card.featured { grid-column: span 4; }
-  .card.compact { grid-column: span 2; }
-
-  @media (max-width: 900px) {
-    .grid { grid-template-columns: 1fr; }
-    .card.featured, .card.compact { grid-column: span 1; }
   }
 
   @keyframes rise {
@@ -158,15 +161,16 @@
     .card { animation: none; opacity: 1; transform: none; }
   }
 
-  /* Featured card layout */
-  .card.featured .media {
+  /* Card media (uniform across every status: rendered, scripted, scaffold) */
+  .card .media {
     position: relative;
     aspect-ratio: 16/9;
     background: #000;
     overflow: hidden;
+    flex-shrink: 0;
   }
 
-  .card.featured .media img {
+  .card .media img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -174,7 +178,7 @@
     transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .card.featured:hover .media img {
+  .card:hover .media img {
     transform: scale(1.035);
   }
 
@@ -228,24 +232,30 @@
   }
 
   .card-body {
-    padding: 24px 26px 26px;
+    padding: 22px 24px 24px;
     display: flex;
     flex-direction: column;
-    gap: 18px;
+    gap: 16px;
+    flex: 1;
   }
 
   .card-title {
     display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 12px;
+    flex-direction: column;
+    gap: 4px;
   }
 
   .card-title h2 {
     margin: 0;
-    font-size: 20px;
+    font-size: 17px;
     font-weight: 600;
     letter-spacing: -0.01em;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .card-title .path {
@@ -253,6 +263,8 @@
     font-size: 11px;
     color: var(--text-tertiary);
     white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .meta-row {
@@ -416,6 +428,103 @@
     margin-top: 4px;
   }
 
+  /* ---------- New project modal ---------- */
+
+  .new-project-panel {
+    width: min(480px, calc(100% - 48px));
+    align-items: stretch;
+    text-align: left;
+    gap: 22px;
+  }
+
+  .new-project-header .overlay-title { text-align: left; }
+
+  .new-project-hint {
+    margin: 8px 0 0;
+    font-size: 13px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  .field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .field-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-tertiary);
+  }
+
+  .skill-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .skill-option {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    text-align: left;
+    padding: 12px 14px;
+    border-radius: var(--radius-md);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--hairline);
+    cursor: pointer;
+    transition: border-color 0.3s cubic-bezier(0.32,0.72,0,1), background 0.3s cubic-bezier(0.32,0.72,0,1);
+  }
+
+  .skill-option:hover { background: rgba(255,255,255,0.06); }
+
+  .skill-option.selected {
+    border-color: var(--accent);
+    background: var(--accent-dim);
+  }
+
+  .skill-option-name {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .skill-option-desc {
+    font-size: 12px;
+    color: var(--text-tertiary);
+    line-height: 1.4;
+  }
+
+  .topic-input {
+    width: 100%;
+    padding: 11px 14px;
+    border-radius: var(--radius-md);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--hairline-strong);
+    color: var(--text-primary);
+    font-size: 14px;
+    font-family: var(--sans);
+    outline: none;
+    transition: border-color 0.3s cubic-bezier(0.32,0.72,0,1);
+  }
+
+  .topic-input::placeholder { color: var(--text-tertiary); }
+  .topic-input:focus { border-color: var(--accent); }
+
+  .command-preview {
+    padding: 12px 14px;
+    border-radius: var(--radius-md);
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--hairline);
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    word-break: break-word;
+  }
+
   .btn.primary {
     background: var(--accent);
     color: #06210d;
@@ -442,14 +551,8 @@
 
   .btn:hover .icon-wrap { transform: translate(1px, -1px) scale(1.05); }
 
-  /* Compact / scaffold card */
-  .card.compact {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .compact .placeholder-media {
-    aspect-ratio: 16/9;
+  /* Scaffold / no-thumbnail media placeholder (same footprint as a real thumbnail) */
+  .media.placeholder {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -459,8 +562,6 @@
     border-bottom: 1px solid var(--hairline);
     color: var(--text-tertiary);
   }
-
-  .compact .card-body { padding: 22px 24px 24px; gap: 16px; flex: 1; }
 
   .empty-note {
     font-size: 13px;
@@ -472,18 +573,14 @@
   /* ---------- New project ghost card ---------- */
 
   .card.ghost {
-    grid-column: span 2;
     border: 1px dashed var(--hairline-strong);
     background: transparent;
-    display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 260px;
+    min-height: 320px;
     text-align: center;
     padding: 32px;
   }
-
-  @media (max-width: 900px) { .card.ghost { grid-column: span 1; } }
 
   .ghost-inner {
     display: flex;
@@ -586,6 +683,43 @@
     </div>
   </div>
 
+  <div class="studio-overlay" id="newProjectOverlay">
+    <div class="studio-overlay-panel new-project-panel">
+      <div class="new-project-header">
+        <div class="overlay-title">Tạo dự án mới</div>
+        <p class="new-project-hint">Chọn skill và chủ đề, copy lệnh rồi dán vào Claude Code để bắt đầu.</p>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Skill</label>
+        <div class="skill-options" id="skillOptions">
+          <button type="button" class="skill-option" data-skill="/stickman-history-video-engine">
+            <span class="skill-option-name">Stickman History</span>
+            <span class="skill-option-desc">Người que + giấy da cổ, chủ đề lịch sử/sinh tồn cổ đại</span>
+          </button>
+          <button type="button" class="skill-option" data-skill="/manhwa-drama-video-engine">
+            <span class="skill-option-name">Manhwa Drama</span>
+            <span class="skill-option-desc">Webtoon Hàn Quốc, kể chuyện tâm sự/drama đời sống</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label" for="topicInput">Chủ đề</label>
+        <input type="text" id="topicInput" class="topic-input" placeholder="VD: người Viking dùng cá khô làm siêu thực phẩm" />
+      </div>
+
+      <div class="command-preview" id="commandPreview">
+        <span id="commandPreviewText">Chọn skill để xem lệnh</span>
+      </div>
+
+      <div class="overlay-actions" style="display:flex;">
+        <button class="btn" id="newProjectCloseBtn" type="button">Đóng</button>
+        <button class="btn primary" id="copyCommandBtn" type="button" disabled><span class="icon-wrap"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg></span>Copy lệnh</button>
+      </div>
+    </div>
+  </div>
+
 <script>
 const ICONS = {
   scene: '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 15l4-4 4 4 6-6 4 4"/></svg>',
@@ -607,12 +741,16 @@ function fmtDate(iso) {
   return d.toLocaleDateString('vi-VN', { day: '2-digit', month: 'short', year: 'numeric' });
 }
 
-function renderFeatured(p) {
+function renderCard(p, delay) {
   const media = p.thumbnail
     ? `<img src="${p.thumbnail}" alt="${p.name} thumbnail" loading="lazy" />`
-    : `<div class="placeholder-media" style="aspect-ratio:16/9;border:0;">${ICONS.scene}</div>`;
+    : '';
+  const mediaClass = p.thumbnail ? 'media' : 'media placeholder';
+  const mediaFallback = p.thumbnail ? '' : ICONS.scene;
 
   const durationBadge = p.duration ? `<div class="duration-badge">${p.duration}</div>` : '';
+
+  const isRendered = p.status === 'rendered';
 
   const chips = [
     p.sceneCount ? `<span class="meta-chip">${ICONS.scene}${p.sceneCount} scenes</span>` : '',
@@ -624,15 +762,29 @@ function renderFeatured(p) {
     ? `<div class="lang-row">${p.languages.map(l => `<span class="lang-tag">${l}</span>`).join('')}</div>`
     : '';
 
-  const openRenderBtn = p.renders[0]
-    ? `<a class="btn primary" href="/${p.id}/out/${p.renders[0].file}" target="_blank" rel="noopener"><span class="icon-wrap">${ICONS.play}</span>Play render</a>`
-    : `<span class="btn primary" style="opacity:0.4;pointer-events:none;"><span class="icon-wrap">${ICONS.play}</span>No render yet</span>`;
+  const note = !isRendered
+    ? `<p class="empty-note">${
+        p.status === 'scaffold'
+          ? 'Project scaffolded, chưa có scenes.json. Chạy skill để sinh kịch bản và scenes.'
+          : `${p.sceneCount ?? '?'} scenes đã lên kịch bản, chưa render.`
+      }</p>`
+    : '';
+
+  const primaryAction = isRendered
+    ? (p.renders[0]
+        ? `<a class="btn primary" href="/${p.id}/out/${p.renders[0].file}" target="_blank" rel="noopener"><span class="icon-wrap">${ICONS.play}</span>Play render</a>`
+        : `<span class="btn primary" style="opacity:0.4;pointer-events:none;"><span class="icon-wrap">${ICONS.play}</span>No render yet</span>`)
+    : `<button class="btn primary open-studio-btn" type="button" data-project="${p.id}"><span class="icon-wrap">${ICONS.code}</span>Open in Studio</button>`;
+
+  const secondaryAction = isRendered
+    ? `<button class="btn open-studio-btn" type="button" data-project="${p.id}"><span class="icon-wrap">${ICONS.code}</span>Open in Studio</button>`
+    : `<button class="btn copy-path-btn" type="button" data-path="${p.id}"><span class="icon-wrap">${ICONS.folder}</span>Copy path</button>`;
 
   return `
-    <article class="card featured" style="animation-delay:${0}ms">
-      <div class="media">
-        ${media}
-        <div class="media-scrim"></div>
+    <article class="card" style="animation-delay:${delay}ms">
+      <div class="${mediaClass}">
+        ${media}${mediaFallback}
+        ${p.thumbnail ? '<div class="media-scrim"></div>' : ''}
         <div class="status-pill ${p.status}"><span class="dot"></span>${STATUS_LABEL[p.status]}</div>
         ${durationBadge}
       </div>
@@ -643,36 +795,10 @@ function renderFeatured(p) {
         </div>
         <div class="meta-row">${chips}</div>
         ${langs}
-        <div class="card-actions">
-          ${openRenderBtn}
-          <button class="btn open-studio-btn" type="button" data-project="${p.id}"><span class="icon-wrap">${ICONS.code}</span>Open in Studio</button>
-        </div>
-      </div>
-    </article>
-  `;
-}
-
-function renderCompact(p, delay) {
-  const media = p.thumbnail
-    ? `<div class="placeholder-media" style="padding:0;"><img src="${p.thumbnail}" alt="" style="width:100%;height:100%;object-fit:cover;"/></div>`
-    : `<div class="placeholder-media">${ICONS.scene}</div>`;
-
-  const note = p.status === 'scaffold'
-    ? `<p class="empty-note">Project scaffolded, chưa có scenes.json. Chạy skill để sinh kịch bản và scenes.</p>`
-    : `<p class="empty-note">${p.sceneCount ?? '?'} scenes đã lên kịch bản, chưa render.</p>`;
-
-  return `
-    <article class="card compact" style="animation-delay:${delay}ms">
-      ${media}
-      <div class="card-body">
-        <div class="card-title">
-          <h2 style="font-size:17px;">${p.name}</h2>
-        </div>
-        <div class="status-pill ${p.status}" style="position:static;display:inline-flex;width:fit-content;"><span class="dot"></span>${STATUS_LABEL[p.status]}</div>
         ${note}
         <div class="card-actions">
-          <button class="btn primary open-studio-btn" type="button" data-project="${p.id}"><span class="icon-wrap">${ICONS.code}</span>Open in Studio</button>
-          <button class="btn copy-path-btn" type="button" data-path="${p.id}"><span class="icon-wrap">${ICONS.folder}</span>Copy path</button>
+          ${primaryAction}
+          ${secondaryAction}
         </div>
       </div>
     </article>
@@ -682,10 +808,10 @@ function renderCompact(p, delay) {
 function renderGhost() {
   return `
     <article class="card ghost">
-      <div class="ghost-inner">
+      <button type="button" class="ghost-inner" id="newProjectBtn" style="background:none;border:0;cursor:pointer;width:100%;height:100%;">
         <div class="ring">${ICONS.plus}</div>
-        <p>Tạo dự án mới bằng skill <code>/stickman-history-video-engine</code>, sau đó chạy lại scan.</p>
-      </div>
+        <p>Tạo dự án mới</p>
+      </button>
     </article>
   `;
 }
@@ -712,11 +838,7 @@ async function boot() {
   let html = '';
   let delay = 0;
   projects.forEach((p) => {
-    if (p.status === 'rendered') {
-      html += renderFeatured(p);
-    } else {
-      html += renderCompact(p, delay);
-    }
+    html += renderCard(p, delay);
     delay += 60;
   });
   html += renderGhost();
@@ -793,6 +915,66 @@ function hideOverlay() {
 }
 
 overlayCloseBtn.addEventListener('click', hideOverlay);
+
+// ---------- New project modal ----------
+
+const newProjectOverlay = document.getElementById('newProjectOverlay');
+const newProjectCloseBtn = document.getElementById('newProjectCloseBtn');
+const skillOptions = document.getElementById('skillOptions');
+const topicInput = document.getElementById('topicInput');
+const commandPreviewText = document.getElementById('commandPreviewText');
+const copyCommandBtn = document.getElementById('copyCommandBtn');
+
+let selectedSkill = null;
+
+function updateCommandPreview() {
+  const topic = topicInput.value.trim();
+  if (!selectedSkill) {
+    commandPreviewText.textContent = 'Chọn skill để xem lệnh';
+    copyCommandBtn.disabled = true;
+    return;
+  }
+  commandPreviewText.textContent = topic ? `${selectedSkill} ${topic}` : selectedSkill;
+  copyCommandBtn.disabled = false;
+}
+
+document.addEventListener('click', (e) => {
+  if (e.target.closest('#newProjectBtn')) {
+    selectedSkill = null;
+    topicInput.value = '';
+    skillOptions.querySelectorAll('.skill-option').forEach(el => el.classList.remove('selected'));
+    updateCommandPreview();
+    newProjectOverlay.classList.add('visible');
+    return;
+  }
+
+  const skillBtn = e.target.closest('.skill-option');
+  if (skillBtn) {
+    skillOptions.querySelectorAll('.skill-option').forEach(el => el.classList.remove('selected'));
+    skillBtn.classList.add('selected');
+    selectedSkill = skillBtn.dataset.skill;
+    updateCommandPreview();
+    return;
+  }
+});
+
+topicInput.addEventListener('input', updateCommandPreview);
+
+newProjectCloseBtn.addEventListener('click', () => {
+  newProjectOverlay.classList.remove('visible');
+});
+
+copyCommandBtn.addEventListener('click', async () => {
+  const command = commandPreviewText.textContent;
+  const original = copyCommandBtn.innerHTML;
+  try {
+    await navigator.clipboard.writeText(command);
+    copyCommandBtn.innerHTML = 'Đã copy';
+    setTimeout(() => { copyCommandBtn.innerHTML = original; }, 1400);
+  } catch {
+    prompt('Copy lệnh:', command);
+  }
+});
 
 async function launchStudio(projectId, triggerBtn) {
   if (inFlightLaunches.has(projectId)) return;

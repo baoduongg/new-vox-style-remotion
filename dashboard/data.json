@@ -1,7 +1,30 @@
 {
-  "generatedAt": "2026-08-26T02:56:06.861Z",
+  "generatedAt": "2026-08-26T09:41:20.536Z",
   "projectRoot": "/Users/dungnb/Projects/new-vox-style-remotion",
   "projects": [
+    {
+      "id": "manhwa-secret-wedding-betrayal",
+      "name": "manhwa-secret-wedding-betrayal",
+      "status": "rendered",
+      "thumbnail": "assets/manhwa-secret-wedding-betrayal-thumb.jpg",
+      "sceneCount": null,
+      "fps": null,
+      "totalFrames": null,
+      "duration": null,
+      "languages": [],
+      "renders": [
+        {
+          "file": "secret_wedding_ko.mp4",
+          "sizeMb": 183.4
+        },
+        {
+          "file": "secret_wedding_shorts.mp4",
+          "sizeMb": 34.3
+        }
+      ],
+      "remotionVersion": "4.0.515",
+      "lastModified": "2026-08-26T04:58:48.738Z"
+    },
     {
       "id": "viking-monster-strength",
       "name": "viking-monster-strength",

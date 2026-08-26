@@ -58,9 +58,10 @@ const projects = entries.map((name) => {
   const fps = scenesData?.fps ?? null;
   const totalFrames = scenesData?.totalFrames ?? null;
 
-  // Detect language variants from scenes_xx.json and render:xx scripts
+  // Detect language variants from scenes_xx.json and render:xx scripts.
+  // Only 2-letter ISO codes count as languages (e.g. render:shorts is a format, not a language).
   const scriptLangs = Object.keys(pkg.scripts || {})
-    .filter((k) => k.startsWith("render:"))
+    .filter((k) => /^render:[a-z]{2}$/.test(k))
     .map((k) => k.split(":")[1]);
   const scenesLangs = fs
     .readdirSync(dir)

@@ -1,48 +1,46 @@
-# Hướng Dẫn Scaffold & Ráp Remotion (Remotion Scaffold Guide)
+# Hướng Dẫn Scaffold & Ráp Remotion Đa Năng (Universal Remotion Scaffold)
 
-Tài liệu này cung cấp bộ khung mẫu dự án và các component React chuyên dụng để lắp ráp video phong cách **Stickman History & Ancient Survival** trong Remotion.
+Tài liệu cung cấp bộ khung mẫu dự án và các component React chuyên dụng để lắp ráp video phong cách **Stickman Animated Explainer & Documentary** cho mọi thể loại trong Remotion.
 
 ---
 
-## 1. Cấu Trúc Dự Án Remotion Độc Lập Chuẩn (Standalone Project)
+## 1. Cấu Trúc Dự Án Remotion Độc Lập Chuẩn
 
-Mỗi video mới **BẮT BUỘC** được tạo trong một thư mục riêng biệt đặt tên theo topic (kebab-case, ví dụ: `viking-freezing-seas/` hoặc `persian-ice-desert/`):
+Mỗi video mới nằm trong một thư mục riêng biệt đặt tên theo topic (kebab-case, ví dụ: `dopamine-loop-explained/`, `inflation-wealth-secrets/`, `roman-concrete-secrets/`):
 
 ```
-viking-freezing-seas/
+topic-project-folder/
 ├── package.json                     # Dependencies & scripts độc lập
 ├── remotion.config.ts               # Cấu hình Rspack & format
 ├── tsconfig.json                    # Cấu hình TypeScript
-├── scenes.json                      # Dữ liệu kịch bản & timing từng frame
+├── scenes.json                      # Dữ liệu kịch bản & timing từng shot (5-8s)
 ├── prompt.json                      # Bộ prompt sinh visual
 ├── metadata.md                      # SEO Title, Description, Thumbnail prompt
 ├── src/
 │   ├── index.ts                     # registerRoot(RemotionRoot)
 │   ├── index.css                    # Google Fonts & background styling
 │   ├── Root.tsx                     # Composition chính
-│   ├── components/
-│   │   ├── ParchmentCanvas.tsx      # Khung nền giấy da cổ + filter nét rung
-│   │   ├── StickmanSVG.tsx          # Nhân vật người que đa tư thế
-│   │   ├── HandDrawnCallout.tsx     # Mũi tên, vòng tròn & gạch chéo vẽ tay
-│   │   ├── TemperatureGauge.tsx     # Thước đo nhiệt độ / calo
-│   │   ├── CrossSectionDiagram.tsx  # Sơ đồ mặt cắt kỹ thuật
-│   │   └── SplitCompare.tsx         # Bố cục so sánh tương phản 2 cột
-│   └── scenes/
-│       ├── Scene01_ParadoxHook.tsx
-│       ├── Scene02_ThreatPhysics.tsx
-│       └── Scene03_WoolScience.tsx
+│   └── components/
+│       ├── ImageScene.tsx           # Hiệu ứng Ken Burns camera & Smart Fallback
+│       ├── AnimatedSubtitle.tsx     # Phụ đề hoạt hình nổi bật từ khóa
+│       ├── Watermark.tsx            # Mascot Avatar kênh viền kim loại
+│       ├── BarChartCompare.tsx      # Biểu đồ cột so sánh động (Tài chính & Khoa học)
+│       └── MetricGauge.tsx          # Đồng hồ đo chỉ số (Nhiệt độ, Dopamine, Lạm phát)
 └── public/
-    └── audio/
-        ├── scenes/                  # Audio TTS từng câu (scene-01.mp3, ...)
-        └── sfx/                     # Hiệu ứng Foley (gió, tiếng đóng dấu, bút chì, ...)
+    ├── assets/scenes/               # 0.png ... N-1.png
+    ├── avatar_stickman_channel.jpg  # Mascot kênh 64px
+    └── audio/scenes/
+        └── full-scene.mp3           # Audio voiceover tổng liền mạch
 ```
 
-### File Mẫu Cấu Hình Cho Project Mới:
+---
+
+## 2. File Cấu Hình Dự Án
 
 **`package.json`**:
 ```json
 {
-  "name": "topic-name",
+  "name": "stickman-explainer-project",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
@@ -60,52 +58,14 @@ viking-freezing-seas/
   "scripts": {
     "dev": "remotion studio",
     "build": "remotion bundle",
-    "render": "remotion render TopicDocumentary-EN out/video.mp4"
+    "render": "remotion render ExplainerDoc out/video.mp4"
   }
 }
 ```
 
-**`remotion.config.ts`**:
-```typescript
-import { Config } from "@remotion/cli/config";
-
-Config.setRspack(true);
-Config.setVideoImageFormat("jpeg");
-Config.setOverwriteOutput(true);
-```
-
-**`tsconfig.json`**:
-```json
-{
-  "compilerOptions": {
-    "target": "ES2018",
-    "module": "Preserve",
-    "moduleResolution": "Bundler",
-    "jsx": "react-jsx",
-    "strict": true,
-    "noEmit": true,
-    "lib": ["es2015", "dom"],
-    "esModuleInterop": true,
-    "resolveJsonModule": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "noUnusedLocals": false
-  },
-  "exclude": ["remotion.config.ts"]
-}
-```
-
-**`src/index.ts`**:
-```typescript
-import { registerRoot } from 'remotion';
-import { RemotionRoot } from './Root';
-
-registerRoot(RemotionRoot);
-```
-
 **`src/index.css`**:
 ```css
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Montserrat:ital,wght@0,600;0,800;1,700&display=swap');
 
 * {
   box-sizing: border-box;
@@ -114,347 +74,79 @@ registerRoot(RemotionRoot);
 body {
   margin: 0;
   padding: 0;
-  background-color: #F3EDE2;
+  background-color: #0F172A;
+  font-family: 'Outfit', 'Montserrat', sans-serif;
 }
 ```
 
 ---
 
-## 2. Các Component Chuyên Dụng Sẵn Dùng
+## 3. Các Component Đồ Họa Đa Năng Sẵn Dùng
 
-### A. Mũi Tên & Vòng Tròn Vẽ Tay (HandDrawnCallout.tsx)
-Tự động vẽ nét từ đầu đến cuối khớp với frame trong Remotion:
+### A. Biểu Đồ So Sánh Tăng Trưởng Động (`BarChartCompare.tsx`)
 
 ```tsx
-// src/components/HandDrawnCallout.tsx
+// src/components/BarChartCompare.tsx
 import React from 'react';
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 
-interface CalloutProps {
-  type: 'circle' | 'arrow';
-  x: number;
-  y: number;
-  width?: number;
-  height?: number;
-  color?: string;
-  delayFrames?: number;
-  label?: string;
+interface BarData {
+  label: string;
+  value: number;
+  color: string;
 }
 
-export const HandDrawnCallout: React.FC<CalloutProps> = ({
-  type,
-  x,
-  y,
-  width = 160,
-  height = 100,
-  color = '#C04A2B',
-  delayFrames = 0,
-  label,
+export const BarChartCompare: React.FC<{ bars: BarData[]; title?: string }> = ({
+  bars,
+  title,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
   const progress = spring({
-    frame: frame - delayFrames,
+    frame,
     fps,
-    config: { damping: 15, mass: 0.5 },
+    config: { damping: 14, mass: 0.5 },
   });
 
-  const strokeDash = interpolate(progress, [0, 1], [600, 0]);
-
-  return (
-    <div style={{ position: 'absolute', left: x, top: y, pointerEvents: 'none' }}>
-      <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} style={{ overflow: 'visible' }}>
-        {type === 'circle' ? (
-          <path
-            d={`M 15 ${height / 2} Q ${width / 2} 5 ${width - 15} ${height / 2} T 15 ${height / 2}`}
-            fill="none"
-            stroke={color}
-            strokeWidth="4.5"
-            strokeLinecap="round"
-            strokeDasharray="600"
-            strokeDashoffset={strokeDash}
-          />
-        ) : (
-          <g>
-            <path
-              d={`M 10 10 Q ${width * 0.6} ${height * 0.2} ${width - 20} ${height - 20}`}
-              fill="none"
-              stroke={color}
-              strokeWidth="5"
-              strokeLinecap="round"
-              strokeDasharray="600"
-              strokeDashoffset={strokeDash}
-            />
-            {progress > 0.8 && (
-              <polygon
-                points={`${width - 10},${height - 10} ${width - 35},${height - 20} ${width - 20},${height - 35}`}
-                fill={color}
-              />
-            )}
-          </g>
-        )}
-      </svg>
-      {label && progress > 0.6 && (
-        <div
-          style={{
-            position: 'absolute',
-            left: width + 10,
-            top: 0,
-            color,
-            fontSize: 22,
-            fontWeight: 'bold',
-            fontFamily: 'serif',
-            whiteSpace: 'nowrap',
-          }}
-        >
-          {label}
-        </div>
-      )}
-    </div>
-  );
-};
-```
-
-### B. Thước Đo Nhiệt Độ & Calo (TemperatureGauge.tsx)
-Thể hiện sự sụt giảm nhiệt độ cơ thể kịch tính:
-
-```tsx
-// src/components/TemperatureGauge.tsx
-import React from 'react';
-import { interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
-
-export const TemperatureGauge: React.FC<{ startTemp: number; endTemp: number; label: string }> = ({
-  startTemp,
-  endTemp,
-  label,
-}) => {
-  const frame = useCurrentFrame();
-  const currentTemp = interpolate(frame, [0, 90], [startTemp, endTemp], {
-    extrapolateRight: 'clamp',
-  });
-
-  const isDanger = currentTemp <= 32;
+  const maxValue = Math.max(...bars.map((b) => b.value));
 
   return (
     <div
       style={{
         position: 'absolute',
+        top: 100,
         right: 80,
-        top: 140,
-        backgroundColor: '#F3EDE2',
-        border: '3px solid #222',
-        borderRadius: 16,
-        padding: '20px 30px',
-        boxShadow: '4px 6px 0px rgba(34,34,34,0.15)',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        width: 180,
+        backgroundColor: 'rgba(15, 23, 42, 0.88)',
+        backdropFilter: 'blur(10px)',
+        border: '3px solid rgba(255, 255, 255, 0.15)',
+        borderRadius: 20,
+        padding: '24px 32px',
+        color: '#FFFFFF',
+        minWidth: 380,
+        boxShadow: '0 16px 36px rgba(0, 0, 0, 0.5)',
       }}
     >
-      <span style={{ fontSize: 18, fontWeight: 700, color: '#666', textTransform: 'uppercase' }}>
-        {label}
-      </span>
-      <span
-        style={{
-          fontSize: 48,
-          fontWeight: 800,
-          color: isDanger ? '#C04A2B' : '#1B3B4B',
-          margin: '10px 0',
-        }}
-      >
-        {currentTemp.toFixed(1)}°C
-      </span>
-      {/* Cột đo nhiệt độ trực quan */}
-      <div style={{ width: 24, height: 160, border: '3px solid #222', borderRadius: 12, padding: 3 }}>
-        <div
-          style={{
-            width: '100%',
-            height: `${Math.max(10, ((currentTemp - 25) / 15) * 100)}%`,
-            backgroundColor: isDanger ? '#C04A2B' : '#1B3B4B',
-            borderRadius: 8,
-            transition: 'height 0.1s ease',
-          }}
-        />
-      </div>
-      {isDanger && (
-        <span style={{ fontSize: 14, color: '#C04A2B', fontWeight: 800, marginTop: 10 }}>
-          HẠ THÂN NHIỆT!
-        </span>
+      {title && (
+        <h3 style={{ margin: '0 0 20px 0', fontSize: 22, fontWeight: 800, color: '#FACC15' }}>
+          {title}
+        </h3>
       )}
-    </div>
-  );
-};
-```
-
-### C. Component Minh Họa Chuẩn (ImageScene.tsx)
-Hiển thị tranh vẽ AI với hiệu ứng Ken Burns điện ảnh, nét vẽ rung `hand-drawn-boil`, viền giấy da cổ và hỗ trợ mảng SFX chính xác:
-
-```tsx
-// src/components/ImageScene.tsx
-import React from 'react';
-import {
-  AbsoluteFill,
-  Img,
-  interpolate,
-  staticFile,
-  useCurrentFrame,
-  useVideoConfig,
-  Audio,
-  Sequence,
-} from 'remotion';
-import { HandDrawnFilter } from './ParchmentCanvas';
-
-export interface SfxItem {
-  file: string;
-  volume?: number;
-  delay?: number;
-}
-
-interface ImageSceneProps {
-  imageIndex: number;
-  audioSrc?: string;
-  sfxList?: SfxItem[];
-  zoomDirection?: 'in' | 'out' | 'pan-left' | 'pan-right';
-}
-
-export const ImageScene: React.FC<ImageSceneProps> = ({
-  imageIndex,
-  audioSrc,
-  sfxList = [],
-  zoomDirection = 'in',
-}) => {
-  const frame = useCurrentFrame();
-  const { durationInFrames } = useVideoConfig();
-
-  // Stepped frame cho hiệu ứng nét vẽ rung tay stop-motion 10fps
-  const steppedFrame = Math.floor(frame / 3) * 3;
-
-  // Hiệu ứng chuyển động máy quay Ken Burns điện ảnh
-  let scale = 1.0;
-  let translateX = 0;
-  let translateY = 0;
-
-  if (zoomDirection === 'in') {
-    scale = interpolate(steppedFrame, [0, durationInFrames], [1.0, 1.05], { extrapolateRight: 'clamp' });
-  } else if (zoomDirection === 'out') {
-    scale = interpolate(steppedFrame, [0, durationInFrames], [1.05, 1.0], { extrapolateRight: 'clamp' });
-  } else if (zoomDirection === 'pan-left') {
-    scale = 1.03;
-    translateX = interpolate(steppedFrame, [0, durationInFrames], [12, -12], { extrapolateRight: 'clamp' });
-  } else if (zoomDirection === 'pan-right') {
-    scale = 1.03;
-    translateX = interpolate(steppedFrame, [0, durationInFrames], [-12, 12], { extrapolateRight: 'clamp' });
-  }
-
-  // Chuyển động thở nhẹ tự nhiên của camera
-  const cameraShakeX = Math.sin((steppedFrame + imageIndex * 40) / 45) * 1.5;
-  const cameraShakeY = Math.cos((steppedFrame + imageIndex * 40) / 50) * 1.2;
-
-  return (
-    <AbsoluteFill style={{ backgroundColor: '#F3EDE2', overflow: 'hidden' }}>
-      <HandDrawnFilter />
-
-      {/* Ảnh minh họa chính + Ken Burns + Hand-drawn boil */}
-      <AbsoluteFill
-        style={{
-          transform: `scale(${scale}) translate(${translateX + cameraShakeX}px, ${translateY + cameraShakeY}px)`,
-          filter: 'url(#hand-drawn-boil)',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Img
-          src={staticFile(`assets/scenes/${imageIndex}.png`)}
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-        />
-      </AbsoluteFill>
-
-      {/* Lớp phủ chất liệu giấy da & viền mờ cổ kính */}
-      <AbsoluteFill
-        style={{
-          background: `
-            radial-gradient(circle at center, transparent 65%, rgba(40, 25, 10, 0.28) 100%),
-            radial-gradient(rgba(34,34,34,0.03) 1px, transparent 1px)
-          `,
-          backgroundSize: '100% 100%, 24px 24px',
-          mixBlendMode: 'multiply',
-          pointerEvents: 'none',
-        }}
-      />
-
-      {/* Viền bản thảo khảo cổ cổ xưa */}
-      <div
-        style={{
-          position: 'absolute',
-          top: 18,
-          left: 18,
-          right: 18,
-          bottom: 18,
-          border: '2px solid rgba(34, 34, 34, 0.2)',
-          borderRadius: 8,
-          pointerEvents: 'none',
-          boxShadow: 'inset 0 0 16px rgba(0,0,0,0.1)',
-        }}
-      />
-
-      {/* Audio Voiceover từng cảnh (nếu có) */}
-      {audioSrc && <Audio src={staticFile(audioSrc)} volume={1.0} />}
-
-      {/* Danh sách Foley SFX theo đúng delay timing */}
-      {sfxList.map((sfx, idx) => (
-        <Sequence key={idx} from={sfx.delay || 0}>
-          <Audio src={staticFile(sfx.file)} volume={sfx.volume ?? 0.2} />
-        </Sequence>
-      ))}
-    </AbsoluteFill>
-  );
-};
-```
-
-### D. Component Watermark Kênh Tối Giản (Watermark.tsx)
-Hiển thị **DUY NHẤT** biểu tượng Avatar tròn của Mascot kênh với viền vàng ánh kim và bóng đổ điện ảnh, tuyệt đối không chèn text tên kênh:
-
-```tsx
-// src/components/Watermark.tsx
-import React from 'react';
-import { Img, staticFile } from 'remotion';
-
-export const ChannelWatermark: React.FC = () => {
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        bottom: 32,
-        right: 36,
-        zIndex: 999,
-        pointerEvents: 'none',
-      }}
-    >
-      <div
-        style={{
-          width: 64,
-          height: 64,
-          borderRadius: '50%',
-          overflow: 'hidden',
-          border: '2.5px solid rgba(255, 215, 0, 0.85)',
-          boxShadow: '0 6px 18px rgba(0,0,0,0.5)',
-          backgroundColor: '#111827',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-      >
-        <Img
-          src={staticFile('avatar_stickman_channel.jpg')}
-          style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-          onError={(e) => {
-            (e.target as HTMLElement).style.display = 'none';
-          }}
-        />
-        <span style={{ position: 'absolute', fontSize: 24, pointerEvents: 'none' }}>⚔️</span>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+        {bars.map((bar, i) => {
+          const barWidth = interpolate(progress, [0, 1], [0, (bar.value / maxValue) * 100]);
+          return (
+            <div key={i}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6, fontSize: 16, fontWeight: 700 }}>
+                <span>{bar.label}</span>
+                <span style={{ color: bar.color }}>{bar.value.toLocaleString()}</span>
+              </div>
+              <div style={{ height: 16, backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: 8, overflow: 'hidden' }}>
+                <div style={{ width: `${barWidth}%`, height: '100%', backgroundColor: bar.color, borderRadius: 8 }} />
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
@@ -463,98 +155,64 @@ export const ChannelWatermark: React.FC = () => {
 
 ---
 
-## 3. Lắp Ráp Root.tsx Chuẩn Song Ngữ & Master Continuous Audio
+### B. Đồng Hồ Đo Chỉ Số Đa Dụng (`MetricGauge.tsx`)
 
 ```tsx
-// src/Root.tsx
-import './index.css';
+// src/components/MetricGauge.tsx
 import React from 'react';
-import { Composition, Sequence, Audio, staticFile } from 'remotion';
-import { ImageScene } from './components/ImageScene';
-import { ChannelWatermark } from './components/Watermark';
-import scenesDataVI from '../scenes.json';
-import scenesDataEN from '../scenes_en.json';
+import { interpolate, useCurrentFrame } from 'remotion';
 
-const zoomDirections: Array<'in' | 'out' | 'pan-left' | 'pan-right'> = [
-  'in', 'out', 'pan-left', 'in', 'pan-right', 'out',
-];
+interface MetricGaugeProps {
+  label: string;
+  startVal: number;
+  endVal: number;
+  unit?: string;
+  color?: string;
+}
 
-// Composition Tiếng Anh (Dùng file master voice track liền mạch)
-export const TopicLandscapeEN: React.FC = () => {
+export const MetricGauge: React.FC<MetricGaugeProps> = ({
+  label,
+  startVal,
+  endVal,
+  unit = '',
+  color = '#EF4444',
+}) => {
+  const frame = useCurrentFrame();
+  const currentVal = interpolate(frame, [0, 60], [startVal, endVal], {
+    extrapolateRight: 'clamp',
+  });
+
   return (
-    <>
-      <Audio src={staticFile('audio/scenes_en/full-scene.mp3')} volume={1.0} />
-      {scenesDataEN.scenes.map((scene, idx) => {
-        const zoomDir = zoomDirections[idx % zoomDirections.length];
-        return (
-          <Sequence
-            key={scene.id}
-            from={scene.startFrame}
-            durationInFrames={scene.durationInFrames}
-          >
-            <ImageScene
-              imageIndex={idx}
-              sfxList={scene.sfxList || []}
-              zoomDirection={zoomDir}
-            />
-          </Sequence>
-        );
-      })}
-      <ChannelWatermark />
-    </>
-  );
-};
-
-// Composition Tiếng Việt (Dùng audio từng phân cảnh)
-export const TopicLandscapeVI: React.FC = () => {
-  return (
-    <>
-      {scenesDataVI.scenes.map((scene, idx) => {
-        const zoomDir = zoomDirections[idx % zoomDirections.length];
-        return (
-          <Sequence
-            key={scene.id}
-            from={scene.startFrame}
-            durationInFrames={scene.durationInFrames}
-          >
-            <ImageScene
-              imageIndex={idx}
-              audioSrc={scene.audioSrc}
-              sfxList={scene.sfxList || []}
-              zoomDirection={zoomDir}
-            />
-          </Sequence>
-        );
-      })}
-      <ChannelWatermark />
-    </>
-  );
-};
-
-export const RemotionRoot: React.FC = () => {
-  return (
-    <>
-      {/* Composition Tiếng Anh (ID hợp lệ dùng dấu gạch ngang '-') */}
-      <Composition
-        id="TopicDocumentary-EN"
-        component={TopicLandscapeEN}
-        durationInFrames={scenesDataEN.totalFrames}
-        fps={scenesDataEN.fps}
-        width={1920}
-        height={1080}
-      />
-
-      {/* Composition Tiếng Việt */}
-      <Composition
-        id="TopicDocumentary-VI"
-        component={TopicLandscapeVI}
-        durationInFrames={scenesDataVI.totalFrames}
-        fps={scenesDataVI.fps}
-        width={1920}
-        height={1080}
-      />
-    </>
+    <div
+      style={{
+        position: 'absolute',
+        top: 80,
+        left: 80,
+        backgroundColor: 'rgba(15, 23, 42, 0.9)',
+        border: `3px solid ${color}`,
+        borderRadius: 20,
+        padding: '16px 28px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: 16,
+        boxShadow: '0 12px 30px rgba(0,0,0,0.5)',
+      }}
+    >
+      <div>
+        <p style={{ margin: 0, fontSize: 14, color: '#94A3B8', fontWeight: 700, textTransform: 'uppercase' }}>
+          {label}
+        </p>
+        <p style={{ margin: 0, fontSize: 36, fontWeight: 900, color }}>
+          {Math.round(currentVal).toLocaleString()}{unit}
+        </p>
+      </div>
+    </div>
   );
 };
 ```
 
+---
+
+### C. Phụ Đề Hoạt Hình & Watermark
+
+*(Xem chi tiết triển khai `AnimatedSubtitle.tsx`, `Watermark.tsx`, và `ImageScene.tsx` trong template mã nguồn)*.

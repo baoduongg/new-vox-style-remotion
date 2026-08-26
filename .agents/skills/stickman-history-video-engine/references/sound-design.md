@@ -1,57 +1,43 @@
 # Thiết Kế Âm Thanh (Sound Design Guide) - Stickman History
 
-Âm thanh là 50% trải nghiệm của một video phong cách tài liệu hoạt họa lịch sử. Thể loại này đòi hỏi sự kết hợp giữa **không gian thiên nhiên cổ xưa hùng vĩ** và **tiếng động foley vẽ tay sắc nét**.
+Âm thanh chiếm 50% trải nghiệm của một video phong cách tài liệu hoạt họa lịch sử. Thể loại này đòi hỏi **đường tiếng lồng tiếng rõ ràng, uyển chuyển**, kết hợp **nhạc nền huyền bí/kịch tính** và **SFX đồ họa tinh tế**, không chèn âm thanh meme gây loãng trải nghiệm.
 
 ---
 
 ## 1. Cấu Trúc 3 Lớp Âm Thanh Chuẩn
 
 ```
-1. Voiceover Track (0dB tham chiếu / đỉnh -3dB)
-   └─ Giọng nam trầm, âm điệu học thuật, rõ ràng, tốc độ vừa phải.
-2. Foley SFX Track (-8dB đến -14dB)
-   ├─ Nhóm 1: Foley Vẽ tay (tiếng bút chì phác thảo, tiếng phấn viết bảng, tiếng lật trang sách cũ)
-   ├─ Nhóm 2: Môi trường (gió tuyết rít, sóng biển va đập, gỗ thuyền cót két)
-   └─ Nhóm 3: Nhấn mạnh đồ họa (tiếng pop khi icon xuất hiện, tiếng kim loại lách cách khi hiện nhiệt kế)
-3. Background Music - BGM (-18dB đến -24dB)
-   └─ Ambient Cinematic cổ đại (Tagelharpa, Đàn Cello trầm, Bộ gõ cổ xưa, Drone bầu không khí)
+1. Voiceover Master Track (0dB tham chiếu / đỉnh -3dB)
+   └─ Giọng đọc trầm ấm, tò mò, tốc độ 130-145 từ/phút, rõ ràng, không bị ngắt vụn.
+2. Background Music - BGM (-20dB đến -24dB)
+   └─ Ambient Cinematic (Ancient Drone, Acoustic Strings, Bộ gõ lịch sử trầm).
+3. Graphic & Transition SFX (-12dB đến -16dB)
+   └─ SFX ngữ cảnh xuất hiện đúng lúc: whoosh (camera lướt), pop/tap (icon/text nhảy), shutter (phóng to sơ đồ).
 ```
 
 ---
 
-## 2. Thư Viện Sound Effects Chuẩn (@remotion/sfx)
+## 2. Bảng Tra Cứu SFX Đồ Họa & Môi Trường
 
-Sử dụng trực tiếp các sound effect chất lượng cao được chuẩn hóa âm lượng đỉnh -3dB từ thư viện chính thức `@remotion/sfx` (https://www.remotion.dev/docs/sfx/):
+| Tên SFX | Mục đích sử dụng | Lưu ý tần suất |
+|---|---|---|
+| `whoosh.wav` | Đi kèm chuyển động pan nhanh hoặc lướt camera | Chỉ dùng ở các đoạn chuyển hướng mạnh (20-30s/lần) |
+| `pop.wav` / `tap.wav` | Khi một nhãn số liệu, mũi tên hoặc hộp thông tin bật ra | Rất nhẹ, không chói tai |
+| `shutter.wav` | Khi phóng to kính hiển vi hoặc sơ đồ mặt cắt | Nhấn mạnh phân tích khoa học |
+| `ambient_fire.wav` | Tiếng lửa trại nổ lách tách | Nhẹ nhàng ở các cảnh tiền sử / xưởng rèn |
+| `ambient_wind.wav` | Tiếng gió rít sa mạc hoặc bão tuyết Bắc Cực | Tăng độ nhập tâm không gian |
+
+> [!IMPORTANT]
+> **Tuyệt đối không lạm dụng SFX**: Không chèn SFX liên tục ở mỗi frame hay mỗi lần chuyển shot 5s. Đường tiếng Voiceover phải luôn được tôn trọng và rõ ràng nhất.
+
+---
+
+## 3. Khớp Âm Thanh Liền Mạch Bằng FFmpeg
+
+File âm thanh Voiceover nguyên vẹn được phân tích để tìm các khoảng lặng tự nhiên giữa các câu:
 
 ```bash
-npm install @remotion/sfx
+ffmpeg -i public/audio/scenes/full-scene.mp3 -af silencedetect=noise=-28dB:d=0.4 -f null -
 ```
 
-### Bảng Mapping SFX Chuẩn Theo Ngữ Cảnh:
-
-| Âm thanh SFX | Source URL / File | Ngữ cảnh sử dụng trong video tài liệu |
-|---|---|---|
-| `pageTurn` | `https://remotion.media/page-turn.wav` | Chuyển cảnh giữa các trang bản thảo / bản đồ cổ (**Bắt buộc ở mỗi lần chuyển Scene**) |
-| `dramaticBoomer` | `https://remotion.media/dramatic-boomer.wav` | Cú đập kịch tính khi nêu nghịch lý, mối đe dọa nhiệt, công trình cổ khổng lồ |
-| `whoosh` | `https://remotion.media/whoosh.wav` | Hiệu ứng chuyển động nhanh, gió lùa, bốc hơi, luồng khí Venturi |
-| `vineBoom` | `https://remotion.media/vine-boom.wav` | Nhấn mạnh cú sốc bất ngờ (vd: Tuyệt đối cấm dùng điện!) |
-| `shutterOld` / `shutterModern` | `https://remotion.media/shutter-old.wav` | Phóng to kính hiển vi, sơ đồ mặt cắt kiến trúc kỹ thuật |
-| `uiSwitch` | `https://remotion.media/switch.wav` | Chuyển đổi giữa 2 cột so sánh Đúng vs Sai, Hiện đại vs Cổ đại |
-| `whip` | `https://remotion.media/whip.wav` | Xuất hiện các mũi tên chỉ dẫn, callout vẽ tay bất ngờ |
-| `ding` | `https://remotion.media/ding.wav` | Phát kiến vật lý, ý tưởng giải mã thành công, CTA rung chuông |
-| `mouseClick` | `https://remotion.media/mouse-click.wav` | Kêu gọi Like & Subscribe cuối video |
-
-> [!TIP]
-> **Quy tắc Chuyển Cảnh**: Luôn chèn `page-turn.wav` (volume `0.20`, `delay: 0`) tại điểm bắt đầu của mỗi Scene để tạo cảm giác lật giở từng trang bản thảo khảo cổ cổ kính liền mạch.
-
-
----
-
-## 3. Lựa Chọn Nhạc Nền (BGM Selection)
-
-- **Phong cách khuyến nghị**:
-  - *Nordic Ambient Folk / Dark Historical Drone*: Nhạc cụ dây gẩy cổ xưa kết hợp tiếng thở dài của thiên nhiên hoang sơ (tham chiếu: âm hưởng nhạc Wardruna, Danheim ở phiên bản nhẹ nhàng không lời).
-  - *Documentary Investigation Ambient*: Tiếng synth mờ ảo kết hợp tiếng gõ nhịp đều đặn thể hiện sự suy luận, giải mã từng bước câu hỏi hóc búa.
-- **Quy tắc quan trọng**:
-  - **Tuck under voice**: BGM không bao giờ được có các đoạn cao trào quá chói hoặc giọng ca hát đè lên voiceover.
-  - **Ducking tự động**: Hạ âm lượng BGM xuống thêm 3-4dB ở những đoạn giải thích số liệu phức tạp để người xem tập trung tối đa.
+Các mốc thời gian khoảng lặng này chính là điểm cắt chuyển cảnh hình ảnh tự nhiên, giúp video mượt mà không bị ngắt tiếng đột ngột.
