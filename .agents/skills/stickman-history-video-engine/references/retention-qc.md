@@ -26,6 +26,23 @@ Khán giả sẽ bấm thoát video nếu màn hình đứng yên 1 hình ảnh 
 
 - [ ] **Văn bản trong tranh chuẩn 100% ngôn ngữ**: Nếu là dự án tiếng Anh $\rightarrow$ 100% tiếng Anh; nếu là tiếng Việt $\rightarrow$ 100% tiếng Việt chuẩn dấu (tuyệt đối không bị rác chữ).
 - [ ] **Khung hình 2D Vector sạch sẽ**: Nhân vật stickman đầu tròn viền đen rõ nét, màu sắc tươi sáng, bóng cel-shading mềm, không có watermark rác của AI.
-- [ ] **Watermark Mascot Kênh**: Hiển thị duy nhất avatar tròn Mascot ở góc phải dưới (`bottom: 32px, right: 36px`), viền vàng kim sắc sảo.
+- [ ] **Watermark Mascot Kênh**: Hiển thị duy nhất avatar tròn Mascot ở góc phải dưới (`bottom: 60px, right: 40px`, đường kính 150px), viền vàng kim sắc sảo.
 - [ ] **Âm thanh Master liền mạch**: Tổng số frames của Composition khớp chính xác 100% với file âm thanh `full-scene.mp3`.
 - [ ] **Typecheck Passed**: Lệnh `npx tsc --noEmit` không có bất kỳ lỗi TypeScript nào.
+
+---
+
+## 4. Checklist Tiêu Đề & Thumbnail (High-CTR & Rule 3 Giây Trên Mobile)
+
+- [ ] **Tiêu Đề Tránh 100% Anti-patterns**:
+  - Không có đuôi học thuật vô hồn `(Real Physics)`, `(Analysis)`.
+  - Không có mẫu câu văn miêu tả chung chung `The Craziest Lengths...`.
+  - Không dùng `The ENTIRE History of...` cho video dưới 15 phút.
+  - Không chứa tag chuỗi tập phim `Part 01`, `P3`.
+- [ ] **Cung Cấp Đủ 2 Phương Án A/B Test Title**: Có sẵn Option A (Tò mò/Nghịch lý) và Option B (Xung đột/Hậu quả) trong `metadata.md`.
+- [ ] **Thumbnail Đạt Chuẩn 1-1-4 (Rule 3 Giây)**:
+  - **1 Nhân vật**: Biểu cảm cực sốc (mắt tròn xoe O_O, há hốc mồm hoặc toát mồ hôi).
+  - **1 Điểm va chạm / Đối đầu**: Kiếm gãy đôi tóe lửa, báu vật phát sáng giữa nền tối, mũi tên đỏ lao dốc tụt vực.
+  - **Text Thumbnail**: Tối đa 3 - 4 từ, in hoa font dày, màu vàng chanh/đỏ viền đen đậm, đọc rõ trong 3s trên màn hình điện thoại 5 inch.
+- [ ] **Đồng Bộ Nội Dung Giữa Thumbnail Và 15s Đầu Kịch Bản**: Trả lời hoặc dẫn thẳng vào nghịch lý ngay Act 1 (Payoff nhanh), không nói vòng vo.
+

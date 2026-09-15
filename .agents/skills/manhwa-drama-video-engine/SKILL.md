@@ -1,6 +1,7 @@
 ---
 name: manhwa-drama-video-engine
-description: Full pipeline để sản xuất video kể chuyện bằng hình ảnh / YouTube Drama Storytelling phong cách Webtoon Manhwa Hàn Quốc (nhân vật manhwa trau chuốt, bối cảnh đô thị hiện đại Seoul / công sở / nhà hàng / quán ăn, phân cảnh kịch tính, lật mặt cú twist, split-screen tương phản, subtitle đậm nét) — từ lên ý tưởng drama/tâm sự đời sống, viết kịch bản tự sự góc nhìn thứ nhất, visual sourcing (Gemini prompts sinh ảnh Manhwa nhất quán nhân vật, ánh sáng chuyển biến tâm lý), đến scaffold Remotion và render. LUÔN dùng skill này khi user nói "làm video kể chuyện manhwa", "làm video tâm sự đời sống", "kể chuyện bằng hình ảnh", "video phong cách webtoon", "video bóc phốt drama", hoặc muốn làm video confession tình cảm/xã hội kịch tính kết hợp đồ họa truyện tranh Hàn Quốc.
+description: >-
+  Full pipeline để sản xuất video kể chuyện bằng hình ảnh / YouTube Drama Storytelling phong cách Webtoon Manhwa Hàn Quốc (nhân vật manhwa trau chuốt, bối cảnh đô thị hiện đại Seoul / công sở / nhà hàng / quán ăn, phân cảnh kịch tính, lật mặt cú twist, split-screen tương phản, subtitle đậm nét) — từ lên ý tưởng drama/tâm sự đời sống, viết kịch bản tự sự góc nhìn thứ nhất, visual sourcing (Gemini prompts sinh ảnh Manhwa nhất quán nhân vật, ánh sáng chuyển biến tâm lý), đến scaffold Remotion và render. LUÔN dùng skill này khi user nói "làm video kể chuyện manhwa", "làm video tâm sự đời sống", "kể chuyện bằng hình ảnh", "video phong cách webtoon", "video bóc phốt drama", hoặc muốn làm video confession tình cảm/xã hội kịch tính kết hợp đồ họa truyện tranh Hàn Quốc.
 ---
 
 # Manhwa Drama Video Engine (Korean Webtoon Storytelling)
@@ -50,6 +51,7 @@ Khi người dùng yêu cầu gợi ý chủ đề mới:
   - Khi video là **Tiếng Việt (`vi`)**: Mọi văn bản trên đạo cụ (hóa đơn `HÓA ĐƠN MUA HÀNG`, sổ tiết kiệm, tin nhắn, thiệp cưới) **bắt buộc ghi rõ chữ tiếng Việt có dấu**.
   - Khi video là **Tiếng Anh (`en`)**: Mọi văn bản trên đạo cụ **bắt buộc ghi rõ chữ tiếng Anh**.
   - **CẤM TUYỆT ĐỐI**: Video tiếng Hàn nhưng prompt lại để text-in-picture bằng tiếng Anh/Việt, hoặc video tiếng Việt nhưng để text-in-picture tiếng Anh. Mọi prompt sinh ảnh có chữ phải chỉ định chuỗi ký tự chính xác bằng ngôn ngữ của video.
+- **Chống Chữ Vô Nghĩa / Bong Bóng Thoại Ảo (Anti-Gibberish Protocol)**: AI sinh ảnh (Gemini) có xu hướng tự ý vẽ thêm **speech bubble/bong bóng thoại trang trí** khi thấy từ khóa "webtoon/manhwa/comic", và vì không có câu thoại thật để điền, nó sẽ vẽ chữ Hangul/Việt/Anh **giả, vô nghĩa (gibberish)** lấp đầy bong bóng đó — đây là lỗi phổ biến nhất khiến ảnh bị hỏng. Xem chi tiết quy tắc bắt buộc + suffix chống lỗi tại `references/visual-sourcing.md` mục 5 và bước QC bắt buộc tại `references/retention-qc.md`.
 
 ### 2. Dự Án Độc Lập 100% (Project Isolation Rule)
 - **Mỗi video mới tạo ra BẮT BUỘC nằm trong một folder project độc lập riêng biệt** đặt tên theo topic (kebab-case, ví dụ: `manhwa-gold-digger-boyfriend/`, `manhwa-office-betrayal/`, `manhwa-fake-billionaire/`).
@@ -63,6 +65,8 @@ Khi người dùng yêu cầu gợi ý chủ đề mới:
 ### 3. Visual DNA Chuẩn Manhwa Webtoon 2D (Korean Manhwa Aesthetic)
 - **Cấu trúc prompt Gemini**: Bắt đầu bằng:
   `Clean 2D modern Korean manhwa romance drama webtoon anime art style illustration, sharp digital line art, semi-realistic anime aesthetics, rich emotional atmosphere.`
+- **Kết thúc MỌI prompt bằng suffix chống bong bóng thoại/chữ ảo** (bắt buộc, xem lý do & chi tiết ở `references/visual-sourcing.md` mục 5):
+  `Cinematic illustration only, no speech bubbles, no dialogue text balloons, no comic captions, no watermarks. Do not render any text except the exact quoted string(s) specified above; if no text is specified, the image must contain zero readable text or lettering.`
 - **Nhân vật & Trang phục**:
   - Nam chính/Nhân vật nam: Kiểu tóc rẽ ngôi nam tính K-Drama, áo khoác măng tô dạ (trench coat), áo len cổ lọ (turtleneck) hoặc suit lịch lãm.
   - Nữ chính/Nhân vật nữ: Tóc uốn sóng dài mềm mại, áo len dệt kim thanh lịch, chân váy trang nhã, biểu cảm tinh tế (mắt sáng hạnh phúc $\rightarrow$ nghi ngờ bất an $\rightarrow$ rơi nước mắt bàng hoàng).
@@ -85,15 +89,15 @@ Khi người dùng yêu cầu gợi ý chủ đề mới:
 
 ### 6. Bố Cục Video, Subtitles & Watermark
 - **Subtitles nổi bật**: Subtitle to, đậm nét, viền đen dày (`text-shadow` hoặc `-webkit-text-stroke: 2px black`), đặt tại 1/6 phía dưới màn hình để người xem nắm bắt câu chuyện ngay cả khi tắt tiếng.
-- **Channel Watermark**: Avatar tròn tối giản ở góc phải trên hoặc phải dưới (`bottom: 32px, right: 36px`), không che khuất biểu cảm nhân vật.
+- **Channel Watermark**: Avatar tròn tối giản ở góc phải trên hoặc phải dưới (`bottom: 60px, right: 40px`, đường kính 150px), không che khuất biểu cảm nhân vật.
 
 ---
 
 ## 🚀 QUY TRÌNH 8 BƯỚC CHUẨN (8-Step Full Production Pipeline)
 
 ```
-0. Xác Định Ngôn Ngữ → 1. Chọn Topic Drama → 2. Kịch Bản Tự Sự 5 Hồi
-   (Mặc định: VI hoặc EN)  (drama-topics.md)      (voText_<lang>.md)
+0. Xác Định Ngôn Ngữ → 1. Chọn Topic Drama → 2. Kịch Bản Audio Storytelling
+   (Mặc định: VI hoặc EN)  (drama-topics.md)      (voText_<lang>.md & .txt)
         ↓
 3. Scene Breakdown (4-6s) → 4. Visual Sourcing & Prompts (Manhwa DNA)
    (timing + 35-50 shots)      (Character Sheet + Emotional Lighting)
@@ -113,16 +117,19 @@ Khi người dùng yêu cầu gợi ý chủ đề mới:
 
 ---
 
-### Bước 1-2: Ý Tưởng + Kịch Bản Tự Sự 5 Hồi (5-Act Narrative Arc)
+### Bước 1-2: Ý Tưởng + Kịch Bản Audio Storytelling Giữ Chân Người Nghe (Storytelling Engine)
 - **Kiểm tra chống trùng**: Đọc `references/topic-history.md` $\rightarrow$ sinh 3-5 ý tưởng mới dựa trên `references/drama-topics.md`.
 - **Ghi log khi duyệt**: Ngay khi user chọn 1 topic, ghi 1 dòng mới vào `references/topic-history.md` (`[IN_PROGRESS]`).
-- **Viết kịch bản theo chuẩn 5 hồi** (Đọc `references/script-writing.md`):
-  1. **Hồi 1: Chiếc Bẫy Hoàn Hảo (The Golden Illusion)** (0:00 - 0:45): Cuộc gặp gỡ định mệnh, người yêu/đối tác hoàn hảo không tì vết.
-  2. **Hồi 2: Gợn Sóng Đầu Tiên (The Ignored Red Flag)** (0:45 - 2:00): Những chi tiết bất thường nhỏ (cuộc gọi lạ lén lút, thói quen giấu điện thoại, sự thay đổi ánh mắt).
-  3. **Hồi 3: Cú Sốc Tang Chứng (The Shocking Discovery)** (2:00 - 4:00): Vô tình phát hiện bằng chứng không thể chối cãi (hóa đơn, sao kê, tin nhắn, bắt quả tang).
-  4. **Hồi 4: Hạ Màn & Lật Mặt (The Unmasking & Confrontation)** (4:00 - 6:30): Bộ mặt thật lộ diện, thái độ thay đổi 180 độ, sự thật tàn nhẫn đằng sau.
-  5. **Hồi 5: Thức Tỉnh & Quả Báo (Awakening & Karma Payoff)** (6:30 - 8:00): Bài học đắt giá, sự trừng phạt thích đáng cho kẻ lừa dối, lời cảnh tỉnh sâu sắc.
-- Xuất thành `<topic-folder>/voText_<lang>.md` và `<topic-folder>/voText_<lang>.txt`.
+- **Thu thập 5 thông tin đầu vào (Input Parameters)**: Thể loại, Chủ đề chính, Đối tượng người nghe, Thời lượng/Số từ mong muốn (130-150 từ/phút), Giọng điệu chủ đạo.
+- **Viết kịch bản theo chuẩn Audio Storytelling 4 giai đoạn** (Đọc chi tiết tại `references/script-writing.md`):
+  1. **MỞ ĐẦU (HOOK - 30-60s đầu)**: Tình huống bất thường / câu hỏi tò mò / xung đột ngay lập tức, kích hoạt tâm lý "phải nghe tiếp", giới thiệu nhân vật và bối cảnh tự nhiên.
+  2. **PHÁT TRIỂN CÂU CHUYỆN (70% thời lượng)**: Chiều sâu nhân vật (mục tiêu, nỗi sợ, xung đột nội tâm), 2-3 plot twists bất ngờ hợp lý, đối thoại tự nhiên, xen kẽ cao trào và đoạn lắng, áp dụng triệt để "Show, Don't Tell".
+  3. **CAO TRÀO ĐỈNH ĐIỂM (15% thời lượng)**: Nhân vật bị dồn vào chân tường, đối diện sự thật tàn nhẫn nhất, đưa ra quyết định bước ngoặt, cảm xúc bùng nổ.
+  4. **KẾT THÚC & DƯ BA (10-15% thời lượng)**: Giải quyết xung đột (quả báo thích đáng / phục thù văn minh / thức tỉnh & chữa lành), bài học nhân sinh sâu sắc, lời cảm ơn và gợi mở tập tiếp theo.
+- **Áp dụng Chỉ dẫn Ngữ điệu (Vocal Directions)**: Chèn `[(giọng trầm, chậm)]`, `[(nghẹn ngào)]`, `[(dồn dập)]`, `[(ngưng 1 nhịp)]` để định hướng sắc thái diễn xuất.
+- **Xuất bản 2 file bắt buộc**:
+  - `<topic-folder>/voText_<lang>.txt`: Text Voiceover sạch 100% cho TTS engine.
+  - `<topic-folder>/voText_<lang>.md`: Kịch bản phân cảnh chi tiết có Visual Tags, Mood, Shot Notes phục vụ Remotion & Prompts Gemini.
 
 ---
 
@@ -138,7 +145,7 @@ Khi người dùng yêu cầu gợi ý chủ đề mới:
 - Thiết lập **Character Consistency Anchor**: Xác định diện mạo nhân vật (tóc, dáng mặt, trang phục) và đưa vào mọi prompt liên quan đến nhân vật đó.
 - Tạo prompt chi tiết cho từng scene: Bắt đầu bằng tiền tố Manhwa, mô tả bối cảnh đô thị, ánh sáng cảm xúc, hành động và góc máy.
 - Xuất danh sách vào `<topic-folder>/prompt.json` và `<topic-folder>/prompts_gemini.md`.
-- Khi user nạp ảnh vào `public/assets/scenes/` (`0.png` -> `N-1.png`), tích hợp vào Remotion.
+- Khi user nạp ảnh vào `public/assets/scenes/` (`0.png` -> `N-1.png`), **BẮT BUỘC chạy Gibberish Text Scan** (`references/retention-qc.md`) trước khi tích hợp vào Remotion — đọc kỹ từng ảnh để phát hiện bong bóng thoại/chữ vô nghĩa do AI tự vẽ, yêu cầu regenerate ảnh lỗi trước khi sang Bước 5.
 
 ---
 

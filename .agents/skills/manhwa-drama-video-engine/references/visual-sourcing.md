@@ -33,13 +33,21 @@ Mọi Prompt Gemini trong skill này tuân thủ cấu trúc 5 phần:
 Clean 2D modern Korean manhwa romance drama webtoon anime art style illustration, sharp digital line art, semi-realistic anime aesthetics, rich emotional cinematic atmosphere.
 ```
 
+### 🚫 Hậu tố bắt buộc cuối mọi prompt (Master Anti-Gibberish Suffix):
+Luôn nối chuỗi này vào **cuối cùng** của mọi prompt, sau phần mô tả bối cảnh/hành động (xem lý do đầy đủ ở mục 5 bên dưới):
+```
+Cinematic illustration only, no speech bubbles, no dialogue text balloons, no comic sound-effect captions, no watermarks. Do not render any text except the exact quoted string(s) specified above; if no text was specified in this prompt, the image must contain zero readable text or lettering.
+```
+
 ---
 
 ## 🎬 3. Bộ Prompt Mẫu Cho Các Phân Cảnh Điển Hình
 
+> ⚠️ Scene 1 dưới đây viết đầy đủ để làm mẫu. Từ Scene 2 trở đi, mỗi prompt **PHẢI** được nối thêm **Master Anti-Gibberish Suffix** ở mục 2 vào cuối trước khi gửi cho Gemini, kể cả khi không viết lặp lại chuỗi đó trong tài liệu này để tiết kiệm không gian.
+
 ### Scene 1: Hẹn hò lãng mạn trước Shinsegae (Romantic Date)
 ```
-Clean 2D modern Korean manhwa romance drama webtoon anime art style illustration, sharp digital line art, semi-realistic anime aesthetics. A handsome 26-year-old Korean man with stylish comma-parted hair in a camel brown wool trench coat and a pretty 24-year-old Korean woman with wavy brown hair in a cream knit sweater and teal skirt, walking happily hand in hand outside a luxury department store with glowing warm entrance lights that say "SHINSEGAE", romantic smiling expressions, pedestrians blurred in background, warm cozy golden evening light, 16:9 widescreen, no photo realism, webtoon comic art.
+Clean 2D modern Korean manhwa romance drama webtoon anime art style illustration, sharp digital line art, semi-realistic anime aesthetics. A handsome 26-year-old Korean man with stylish comma-parted hair in a camel brown wool trench coat and a pretty 24-year-old Korean woman with wavy brown hair in a cream knit sweater and teal skirt, walking happily hand in hand outside a luxury department store with glowing warm entrance lights that say "SHINSEGAE", romantic smiling expressions, pedestrians blurred in background, warm cozy golden evening light, 16:9 widescreen, no photo realism, webtoon comic art. Cinematic illustration only, no speech bubbles, no dialogue text balloons, no comic sound-effect captions, no watermarks. Do not render any text except the exact quoted string(s) specified above; if no text was specified in this prompt, the image must contain zero readable text or lettering.
 ```
 
 ### Scene 2: Ăn tối ngắm hoàng hôn sông Hàn (Han River Dinner)
@@ -92,3 +100,21 @@ Mọi prompt mô tả vật chứng có chữ **bắt buộc chỉ định rõ c
 - **Prompt suffix bắt buộc**: `All visible text, receipts, phone messages, and signs must strictly be in clear English typography with Latin alphabet.`
 
 > ⚠️ **CẤM TUYỆT ĐỐI**: Để lẫn lộn ngôn ngữ (ví dụ video tiếng Hàn mà hóa đơn lại in tiếng Anh "INVOICE" hoặc tiếng Việt; hoặc video tiếng Việt mà thiệp cưới lại in tiếng Anh). Mọi văn bản xuất hiện trong visual phải giúp người xem hòa mình tự nhiên 100% vào thế giới của câu chuyện!
+
+---
+
+## 🚫 5. Chống Lỗi Chữ Vô Nghĩa & Bong Bóng Thoại Ảo (Anti-Gibberish / No Speech-Bubble Protocol)
+
+### 🔍 Nguyên nhân gốc rễ (Root Cause):
+Khi prompt chứa các từ khóa thể loại như `"webtoon"`, `"manhwa"`, `"comic"`, mô hình sinh ảnh (Gemini/Nano Banana) có xu hướng **tự ý vẽ thêm speech bubble (bong bóng thoại)** vào cảnh — kể cả khi prompt **không hề yêu cầu** — vì nó liên tưởng thể loại này với truyện tranh có lời thoại. Do không có câu thoại thật nào được cấp cho nó để điền vào bong bóng đó, mô hình sẽ **bịa ra các ký tự Hangul/Việt/Anh trông giống chữ nhưng vô nghĩa (gibberish)**. Đây là lỗi hình ảnh phổ biến và nghiêm trọng nhất của pipeline này — đặc biệt nguy hiểm nếu rơi vào đúng các scene "bằng chứng" (evidence reveal) vốn là khoảnh khắc chốt hạ cú twist.
+
+### ✅ Quy tắc bắt buộc để phòng tránh:
+1. **Luôn nối Master Anti-Gibberish Suffix** (mục 2) vào cuối **MỌI** prompt Gemini, không có ngoại lệ — kể cả các scene tưởng chừng không có chữ.
+2. **Không mô tả nhân vật đang "nói/thoại" một cách chung chung** (ví dụ tránh cụm `"talking to each other"`, `"having a conversation"`) vì cụm này gợi ý mô hình vẽ bong bóng thoại. Thay vào đó, mô tả **hành động và biểu cảm cụ thể** (`"listening with a warm smile"`, `"gesturing while explaining"`, `"looking away with a cold expression"`) — nội dung lời thoại đã có sẵn trong phụ đề (`voText`) nên KHÔNG cần lặp lại bằng bong bóng thoại trong ảnh.
+3. **Nếu một scene bắt buộc phải có chữ hiển thị** (hóa đơn, tài liệu, biển hiệu, màn hình điện thoại, banner...), áp dụng đúng mục 4 ở trên: chỉ định chính xác **chuỗi ký tự trong ngoặc đơn** và đặt trong dấu ngoặc kép của prompt. Không được để mô hình tự bịa thêm chữ phụ nào khác ngoài chuỗi đã chỉ định.
+4. **Ưu tiên composition không chữ** cho các scene cảm xúc/phản ứng (cận cảnh biểu cảm, phân cảnh lãng mạn, phân cảnh nghi ngờ) — chỉ đưa chữ vào khi đó chính là vật chứng cốt truyện.
+
+### 🩹 Cách xử lý khi ảnh đã bị lỗi (Recovery):
+Nếu sau khi nhận ảnh vẫn phát hiện bong bóng thoại/chữ gibberish (xem bước QC bắt buộc tại `references/retention-qc.md`):
+- Tạo lại (regenerate) riêng ảnh đó với prompt đã bổ sung rõ suffix chống-gibberish + câu lệnh phụ: `"Absolutely no speech bubbles or dialogue balloons anywhere in the frame."`
+- Nếu ảnh vẫn tái phạm sau 2 lần thử, đổi hướng composition sang cận cảnh không chữ (silent reaction shot) để né hẳn khu vực dễ sinh bong bóng thoại.

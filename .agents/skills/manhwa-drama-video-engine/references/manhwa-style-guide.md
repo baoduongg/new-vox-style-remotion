@@ -13,6 +13,7 @@ Phong cách này là **Modern Korean Webtoon 2D Digital Art** kết hợp nghệ
    - Tỷ lệ cơ thể chuẩn phong cách Anime/Manhwa bán tả thực (`semi-realistic modern anime anatomy`).
    - **Nam chính (Male Lead)**: Gương mặt điển trai góc cạnh, lông mày kiếm, kiểu tóc rẽ ngôi nam tính K-Pop/K-Drama (`two-block cut / comma hair`), dáng người cao ráo mặc áo măng-tô dạ (`wool trench coat`), áo len cổ lọ (`black turtleneck`) hoặc vest công sở.
    - **Nữ chính (Female Lead)**: Gương mặt khả ái, mắt to tròn long lanh, tóc uốn sóng nhẹ bồng bềnh (`soft wavy brown hair`), trang phục nữ tính trang nhã (áo len dệt kim, chân váy dài, túi xách đeo vai).
+   - **Cấm bong bóng thoại trang trí (No Speech Bubbles)**: Phong cách này là **minh họa điện ảnh (cinematic illustration)** kể chuyện bằng phụ đề (`voText`) + giọng đọc, **KHÔNG phải khung truyện tranh có bong bóng chữ**. Prompt sinh ảnh tuyệt đối không được để AI tự vẽ thêm speech bubble/dialogue balloon — vì mô hình sẽ bịa chữ vô nghĩa (gibberish) để lấp đầy bong bóng đó khi không có thoại thật. Chi tiết & suffix bắt buộc xem `references/visual-sourcing.md` mục 5.
    - **Biểu cảm đa tầng (Micro-Expressions)**:
      - *Hạnh phúc*: Mắt cười cong hình trăng khuyết, gò má ửng hồng phớt, nụ cười dịu dàng.
      - *Nghi ngờ / Bất an*: Đồng tử co rút nhẹ, chân mày chau lại, mắt nhìn nghiêng sang góc khác.

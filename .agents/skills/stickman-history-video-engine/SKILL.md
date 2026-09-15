@@ -1,6 +1,7 @@
 ---
 name: stickman-history-video-engine
-description: Full pipeline để sản xuất video YouTube phong cách Stickman 2D Animated Explainer & Documentary (hoạt họa người que 2D vector tối giản, biểu cảm phong phú, sơ đồ mặt cắt khoa học, giải thích trực quan các chủ đề: Khoa học/Y học, Tài chính/Kinh tế, Tâm lý học/Thói quen, Công nghệ/AI, Sinh tồn/What-If, và Lịch sử cổ đại) — từ lên ý tưởng, viết kịch bản, visual sourcing (Gemini prompts/SVG stickman), đến scaffold và ráp Remotion. LUÔN dùng skill này khi user nói "làm video stickman", "video người que", "làm video giải thích kiểu Kurzgesagt / AsapSCIENCE / Psych2Go / Casually Explained / OverSimplified / Before Civilization", "video what-if", hoặc muốn làm video kiến thức giải thích trực quan bằng người que.
+description: >-
+  Full pipeline để sản xuất video YouTube phong cách Stickman 2D Animated Explainer & Documentary (hoạt họa người que 2D vector tối giản, biểu cảm phong phú, sơ đồ mặt cắt khoa học, giải thích trực quan các chủ đề: Khoa học/Y học, Tài chính/Kinh tế, Tâm lý học/Thói quen, Công nghệ/AI, Sinh tồn/What-If, và Lịch sử cổ đại) — từ lên ý tưởng, viết kịch bản, visual sourcing (Gemini prompts/SVG stickman), đến scaffold và ráp Remotion. LUÔN dùng skill này khi user nói "làm video stickman", "video người que", "làm video giải thích kiểu Kurzgesagt / AsapSCIENCE / Psych2Go / Casually Explained / OverSimplified / Before Civilization", "video what-if", hoặc muốn làm video kiến thức giải thích trực quan bằng người que.
 ---
 
 # Stickman Universal Video Engine (Science, Finance, Psychology, Tech, Survival & History)
@@ -49,7 +50,7 @@ Khi người dùng yêu cầu gợi ý chủ đề mới:
 - Nhạc nền BGM Ambient nhẹ nhàng (-20dB), SFX đồ họa tinh tế (`whoosh`, `pop`, `shutter`), không chèn âm meme gây loãng video.
 
 ### 6. Channel Mascot Watermark
-- Hiển thị duy nhất avatar tròn Mascot (`avatar_stickman_channel.jpg`, đường kính 64px, viền kim loại vàng kim) ở góc phải dưới (`bottom: 32px, right: 36px`, `zIndex: 999`).
+- Hiển thị duy nhất avatar tròn Mascot (`avatar_stickman_channel.jpg`, đường kính 150px, viền kim loại vàng kim) ở góc phải dưới (`bottom: 60px, right: 40px`, `zIndex: 999`).
 
 ---
 
@@ -65,6 +66,21 @@ Khi người dùng yêu cầu gợi ý chủ đề mới:
 5. Scaffold Standalone Project → 6. Master Audio & Sync Silencedetect
    (remotion-scaffold.md)           (sound-design.md)
         ↓
-7. Tạo High-CTR Thumbnail 2D Vector → 8. QC, Preview Studio & Render
-   (metadata.md - 3 điểm chạm)            (retention-qc.md)
+7. Tạo High-CTR Thumbnail 2D Vector (Quy tắc 1-1-4 & Rule 3 Giây) → 8. QC, Preview Studio & Render
+   (metadata.md - 1 Nhân vật + 1 Va chạm + Text ≤ 4 từ)                 (retention-qc.md - A/B Titles)
 ```
+
+### Bước 7: Tạo Thumbnail 2D Vector High-CTR (Rule 3 Giây trên Mobile & Chuẩn 1-1-4)
+- Đọc `references/metadata.md`.
+- Áp dụng **Quy tắc 1-1-4 (1 Nhân Vật + 1 Điểm Va Chạm/Xung Đột + Text ≤ 4 Từ)**:
+  1. **Nhân vật (Ở giữa)**: Stickman biểu cảm cực sốc (mắt tròn xoe O_O há hốc mồm, toát mồ hôi).
+  2. **Điểm va chạm / Đối đầu**: Kiếm chạm khiên gãy đôi tóe lửa; tảng muối phát sáng giữa bãi chiến trường tối; kim tự tháp sụp đổ kèm mũi tên đỏ dốc đứng.
+  3. **Text Thumbnail (≤ 3-4 từ)**: In hoa font chữ Sans-Serif dày dặn, màu vàng chanh hoặc đỏ viền đen đậm (`IT SHATTERS?!`, `DEADLIER THAN GOLD`, `3,000 YEARS COLLAPSED`).
+- Sinh prompt và xuất file thumbnail 16:9 lưu vào `<topic-folder>/out/thumbnail.jpg` và `public/thumbnail.jpg`.
+
+### Bước 8: QC, Preview Studio & Xuất Bản Render
+- Đọc `references/retention-qc.md` và `references/metadata.md`.
+- Viết tiêu đề kích thích tò mò theo **3 Công Thức High-CTR** (tránh 100% các từ cấm `Real Physics`, `The ENTIRE History`, `Part X`), cung cấp sẵn **2 phương án A/B Test Title** (Option A & Option B), mô tả SEO và tags vào `<topic-folder>/metadata.md`.
+- Chạy typecheck `npx tsc --noEmit`.
+- Mở preview Remotion Studio: `npm run dev` (`http://localhost:3000`).
+- Xuất bản video: `npm run render` ra folder `out/`.

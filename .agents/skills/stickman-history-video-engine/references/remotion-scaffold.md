@@ -28,7 +28,7 @@ topic-project-folder/
 │       └── MetricGauge.tsx          # Đồng hồ đo chỉ số (Nhiệt độ, Dopamine, Lạm phát)
 └── public/
     ├── assets/scenes/               # 0.png ... N-1.png
-    ├── avatar_stickman_channel.jpg  # Mascot kênh 64px
+    ├── avatar_stickman_channel.jpg  # Mascot kênh 150px
     └── audio/scenes/
         └── full-scene.mp3           # Audio voiceover tổng liền mạch
 ```
