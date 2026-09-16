@@ -15,7 +15,7 @@ Pipeline sản xuất video YouTube phong cách **Stickman 2D Vector Animated Ex
 Khi người dùng yêu cầu gợi ý chủ đề mới:
 
 1. **ĐỌC LỊCH SỬ CHỐNG TRÙNG**: Đọc `references/topic-history.md` $\rightarrow$ Tuyệt đối không đề xuất lại chủ đề đã sản xuất.
-2. **SINH ĐỘNG 3-5 CHỦ ĐỀ MỚI THEO 6 PHÂN HỆ** (tham chiếu chi tiết tại `references/viking-topics.md`):
+2. **SINH ĐỘNG 3-5 CHỦ ĐỀ MỚI THEO 6 PHÂN HỆ** (tham chiếu chi tiết tại `references/topics.md`):
    - 🔬 **Khoa Học & Y Học**: Cơ thể thiếu ngủ 7 ngày, hệ miễn dịch đánh virus, cà phê & não bộ.
    - 💰 **Tài Chính & Kinh Tế**: Bẫy lạm phát tiền mất giá, kỳ quan lãi kép, bong bóng tài sản.
    - 🧠 **Tâm Lý Học & Thói Quen**: Cạm bẫy trì hoãn & vòng lặp Dopamine, hiệu ứng Dunning-Kruger.
@@ -51,6 +51,7 @@ Khi người dùng yêu cầu gợi ý chủ đề mới:
 
 ### 6. Channel Mascot Watermark
 - Hiển thị duy nhất avatar tròn Mascot (`avatar_stickman_channel.jpg`, đường kính 150px, viền kim loại vàng kim) ở góc phải dưới (`bottom: 60px, right: 40px`, `zIndex: 999`).
+- **File avatar chưa có sẵn trong repo skill** — trước bước Scaffold, tạo/lấy file `avatar_stickman_channel.jpg` rồi copy vào `<topic-folder>/public/` (theo mẫu `horror-storytelling-video-engine/resources/` + Bước 5 của skill đó). Dùng chung avatar với `stickman-storytelling-video-engine` nếu cùng kênh.
 
 ---
 
@@ -58,7 +59,7 @@ Khi người dùng yêu cầu gợi ý chủ đề mới:
 
 ```
 0. Xác Định Ngôn Ngữ → 1. Chọn Chủ Đề (6 Phân Hệ) → 2. Viết Kịch Bản 5 Phần
-   (Default: English)      (viking-topics.md)            (script-writing.md)
+   (Default: English)      (topics.md)            (script-writing.md)
         ↓
 3. Scene Breakdown (5-8s) → 4. Visual Prompts (Đúng Ngôn Ngữ Nhãn Sơ Đồ)
    (timing + 40-55 shots)      (visual-sourcing.md + stickman-style-guide.md)

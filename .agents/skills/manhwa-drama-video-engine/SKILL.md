@@ -114,6 +114,7 @@ Khi người dùng yêu cầu gợi ý chủ đề mới:
 ### Bước 0: Xác Định Ngôn Ngữ Dự Án (Language Setup)
 - Xác định ngôn ngữ mục tiêu: **Tiếng Việt (`vi`)** hoặc **Tiếng Anh (`en`)**.
 - Toàn bộ kịch bản, lời thoại, phụ đề và text trên đồ vật trong ảnh sẽ tuân thủ ngôn ngữ này.
+- Nếu đang thiết lập kênh mới (avatar, banner, bảng màu thương hiệu), đọc `references/channel-setup.md`.
 
 ---
 
@@ -184,3 +185,18 @@ Khi người dùng yêu cầu gợi ý chủ đề mới:
 - Mở preview Remotion Studio: `npm run dev` (`http://localhost:3000`).
 - Xuất bản video hoàn chỉnh: `npm run render` ra thư mục `out/`.
 - Tạo tiêu đề câu view tâm sự, mô tả kịch tính và tags vào `<topic-folder>/metadata.md`.
+
+---
+
+## 📖 TÀI LIỆU THAM CHIẾU CHI TIẾT (REFERENCES)
+
+1. [4 Trụ Cột Đề Tài Drama (drama-topics.md)](references/drama-topics.md)
+2. [Kỹ Thuật Viết Kịch Bản Audio Storytelling (script-writing.md)](references/script-writing.md)
+3. [Quy Chuẩn Phong Cách Thị Giác Manhwa (manhwa-style-guide.md)](references/manhwa-style-guide.md)
+4. [Hướng Dẫn Prompt & Visual Sourcing (visual-sourcing.md)](references/visual-sourcing.md)
+5. [Scaffold Dự Án Remotion (remotion-scaffold.md)](references/remotion-scaffold.md)
+6. [Thiết Kế Âm Thanh (sound-design.md)](references/sound-design.md)
+7. [Tối Ưu Metadata & Thumbnail High-CTR (metadata.md)](references/metadata.md)
+8. [Kiểm Duyệt Chất Lượng & Render (retention-qc.md)](references/retention-qc.md)
+9. [Nhật Ký Chống Trùng Đề Tài (topic-history.md)](references/topic-history.md)
+10. [Thiết Lập Kênh YouTube (channel-setup.md)](references/channel-setup.md)

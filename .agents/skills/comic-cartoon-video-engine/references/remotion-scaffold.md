@@ -52,13 +52,13 @@ Tài liệu hướng dẫn cấu trúc dự án Remotion độc lập (Standalon
     "render": "remotion render src/index.ts ComicShort out/video.mp4 --props=scenes.json"
   },
   "dependencies": {
-    "@remotion/cli": "^4.0.218",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "remotion": "^4.0.218"
+    "@remotion/cli": "4.0.515",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.515"
   },
   "devDependencies": {
-    "@types/react": "^18.3.12",
+    "@types/react": "19.2.7",
     "typescript": "^5.6.3"
   }
 }

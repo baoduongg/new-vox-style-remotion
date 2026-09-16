@@ -18,7 +18,7 @@ Kịch bản cho phong cách **Stickman Storytelling / Animated Narrative** hi�
 
 ## 🔍 0.5. Tích Hợp Tư Liệu Từ YouTube Video Research (Fact & Quote Injection)
 
-Khi viết kịch bản dựa trên các case study thực tế (bẫy công nghệ, đại án kinh tế, bẫy tài chính, thử nghiệm tâm lý), kịch bản sẽ trở nên **uy tín và giật gân gấp 10 lần** khi được nạp các phát hiện từ [youtube-video-research](file:///Users/baoduong/Projects/new-vox-style-remotion/.agents/skills/youtube-video-research/SKILL.md):
+Khi viết kịch bản dựa trên các case study thực tế (bẫy công nghệ, đại án kinh tế, bẫy tài chính, thử nghiệm tâm lý), kịch bản sẽ trở nên **uy tín và giật gân gấp 10 lần** khi được nạp các phát hiện từ skill `youtube-video-research`:
 
 1. **Direct Quotes làm Hook & Lời Thoại**: 
    - Đưa câu nói ngông cuồng nhất của kẻ lừa đảo hoặc lời thú nhận của nhân chứng lên ngay câu mở đầu (0:00 - 0:15).

@@ -71,6 +71,7 @@ Khi người dùng yêu cầu gợi ý chủ đề mới:
 
 ### 7. Channel Mascot Watermark
 - Hiển thị avatar tròn Mascot (`avatar_comic_channel.png`, đường kính 120px, viền vàng kim `#FACC15`) ở góc phải dưới (`bottom: 60px, right: 40px`, `zIndex: 999`).
+- **File avatar chưa có sẵn trong `resources/`** — trước Bước 5, tạo/lấy file `avatar_comic_channel.png` rồi copy vào `<topic-folder>/public/` (theo mẫu `horror-storytelling-video-engine/resources/` + Bước 5 của skill đó).
 
 ---
 
@@ -131,12 +132,13 @@ Khi người dùng yêu cầu gợi ý chủ đề mới:
 
 ## 📖 TÀI LIỆU THAM CHIẾU CHI TIẾT (REFERENCES)
 
-1. [Quy Chuẩn Phong Cách Thị Giác (comic-style-guide.md)](file:///Users/baoduong/Projects/new-vox-style-remotion/.agents/skills/comic-cartoon-video-engine/references/comic-style-guide.md)
-2. [Hướng Dẫn Prompt & Visual Sourcing (visual-sourcing.md)](file:///Users/baoduong/Projects/new-vox-style-remotion/.agents/skills/comic-cartoon-video-engine/references/visual-sourcing.md)
-3. [6 Trụ Cột Đề Tài Comic (comic-topics.md)](file:///Users/baoduong/Projects/new-vox-style-remotion/.agents/skills/comic-cartoon-video-engine/references/comic-topics.md)
-4. [Kỹ Thuật Viết Kịch Bản 5 Hồi (script-writing.md)](file:///Users/baoduong/Projects/new-vox-style-remotion/.agents/skills/comic-cartoon-video-engine/references/script-writing.md)
-5. [Scaffold Dự Án Remotion (remotion-scaffold.md)](file:///Users/baoduong/Projects/new-vox-style-remotion/.agents/skills/comic-cartoon-video-engine/references/remotion-scaffold.md)
-6. [Thiết Kế Âm Thanh & SFX (sound-design.md)](file:///Users/baoduong/Projects/new-vox-style-remotion/.agents/skills/comic-cartoon-video-engine/references/sound-design.md)
-7. [Tối Ưu Metadata & Thumbnail High-CTR (metadata.md)](file:///Users/baoduong/Projects/new-vox-style-remotion/.agents/skills/comic-cartoon-video-engine/references/metadata.md)
-8. [Kiểm Duyệt Chất Lượng & Render (retention-qc.md)](file:///Users/baoduong/Projects/new-vox-style-remotion/.agents/skills/comic-cartoon-video-engine/references/retention-qc.md)
-9. [Nhật Ký Chống Trùng Đề Tài (topic-history.md)](file:///Users/baoduong/Projects/new-vox-style-remotion/.agents/skills/comic-cartoon-video-engine/references/topic-history.md)
+1. [Quy Chuẩn Phong Cách Thị Giác (comic-style-guide.md)](references/comic-style-guide.md)
+2. [Hướng Dẫn Prompt & Visual Sourcing (visual-sourcing.md)](references/visual-sourcing.md)
+3. [6 Trụ Cột Đề Tài Comic (comic-topics.md)](references/comic-topics.md)
+4. [Kỹ Thuật Viết Kịch Bản 5 Hồi (script-writing.md)](references/script-writing.md)
+5. [Scaffold Dự Án Remotion (remotion-scaffold.md)](references/remotion-scaffold.md)
+6. [Thiết Kế Âm Thanh & SFX (sound-design.md)](references/sound-design.md)
+7. [Tối Ưu Metadata & Thumbnail High-CTR (metadata.md)](references/metadata.md)
+8. [Kiểm Duyệt Chất Lượng & Render (retention-qc.md)](references/retention-qc.md)
+9. [Nhật Ký Chống Trùng Đề Tài (topic-history.md)](references/topic-history.md)
+10. [Thiết Lập Kênh YouTube (channel-setup.md)](references/channel-setup.md)

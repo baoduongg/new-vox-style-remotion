@@ -80,6 +80,7 @@ Khi người dùng yêu cầu gợi ý câu chuyện / chủ đề mới:
 
 ### 6. Nhận Diện Kênh & Bố Cục Tối Giản (Channel Mascot Watermark)
 - **Channel Mascot Watermark**: Hiển thị DUY NHẤT avatar tròn của kênh (`avatar_stickman_channel.jpg`, đường kính 150px, viền vàng kim `2.5px solid rgba(255, 215, 0, 0.85)` và bóng đổ điện ảnh) cố định ở góc phải dưới (`bottom: 60px, right: 40px`) trên layer cao nhất (`zIndex: 999`). **TUYỆT ĐỐI KHÔNG chèn thêm text tên kênh làm rối khung hình kể chuyện**.
+- **File avatar chưa có sẵn trong repo skill** — trước bước Scaffold, tạo/lấy file `avatar_stickman_channel.jpg` rồi copy vào `<topic-folder>/public/` (theo mẫu `horror-storytelling-video-engine/resources/` + Bước 5 của skill đó). Dùng chung avatar với `stickman-history-video-engine` nếu cùng kênh.
 - **Hiệu ứng Camera Ken Burns & Kịch Tính**: Luân phiên zoom-in kịch tính vào mặt nhân vật, pan ngang theo hướng di chuyển của nhân vật, rung máy khi có va chạm/nổ, mờ chuyển cảnh êm ái.
 
 ### 7. Đồng Bộ Audio-Visual Tuyệt Đối (Silent-Failure Prevention)

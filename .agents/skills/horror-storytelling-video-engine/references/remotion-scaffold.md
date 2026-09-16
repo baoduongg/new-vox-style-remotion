@@ -66,13 +66,13 @@ Tài liệu này cung cấp toàn bộ mã nguồn mẫu và kiến trúc compon
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@remotion/cli": "^4.0.260",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "remotion": "^4.0.260"
+    "@remotion/cli": "4.0.515",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "remotion": "4.0.515"
   },
   "devDependencies": {
-    "@types/react": "^18.3.3",
+    "@types/react": "19.2.7",
     "typescript": "^5.4.5"
   }
 }
@@ -807,7 +807,7 @@ const MainComposition: React.FC<CompositionProps> = ({
   );
 };
 
-export const Root: React.FC = () => {
+export const RemotionRoot: React.FC = () => {
   const totalFrames =
     (scenesData as SceneItem[]).reduce(
       (acc, cur) => Math.max(acc, cur.startFrame + cur.durationInFrames),
@@ -860,9 +860,9 @@ export const Root: React.FC = () => {
 #### `src/index.ts`:
 ```ts
 import { registerRoot } from 'remotion';
-import { Root } from './Root';
+import { RemotionRoot } from './Root';
 
-registerRoot(Root);
+registerRoot(RemotionRoot);
 ```
 
 #### `src/index.css`:
