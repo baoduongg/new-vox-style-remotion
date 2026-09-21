@@ -888,3 +888,63 @@ Khi khởi tạo thư mục dự án mới, lệnh sau **BẮT BUỘC ĐƯỢC C
 cp .agents/skills/horror-storytelling-video-engine/resources/avatar_horror_channel.png <project-folder>/public/
 cp .agents/skills/horror-storytelling-video-engine/resources/avatar_horror_channel.png <project-folder>/public/assets/
 ```
+
+---
+
+## 🔊 6. Đồng Bộ Audio-Visual Tuyệt Đối (Critical Sync Checklist)
+
+Ba lỗi câm-lặng sau đây **không làm crash Remotion và không log lỗi nào** — chúng chỉ khiến ảnh/voice không hiển thị/phát mà người thực hiện không hề biết cho tới khi xem preview. Sau bước Scaffold và trước khi coi bước Master Audio là xong, **BẮT BUỘC** chạy đủ 3 kiểm tra dưới đây:
+
+### A. Kiểm Tra Tên File Ảnh
+```bash
+ls public/assets/scenes/
+```
+Phải thấy đúng `0.png`, `1.png`, ..., `N-1.png` — không tiền tố (`Scene 0.png`), không khoảng trắng, không số 0 đệm (`00.png`). Nếu ảnh được AI/user lưu sai tên (rất hay gặp khi tải hàng loạt từ Gemini/Nano Banana), đổi tên lại ngay:
+```bash
+cd public/assets/scenes && for f in "Scene "*.png; do mv "$f" "$(echo "$f" | sed -E 's/Scene ([0-9]+)\.png/\1.png/')"; done
+```
+`HorrorScene.tsx` dùng `staticFile(\`assets/scenes/${imageIndex}.png\`)` và fallback dùng **cùng pattern** — nếu tên sai, cả ảnh chính lẫn ảnh fallback đều không load được, toàn bộ video render nền đen.
+
+### B. Kiểm Tra Đuôi File Audio Khớp Với Root.tsx
+```bash
+ls public/audio/scenes/
+```
+So khớp chính xác với đường dẫn trong `<Audio src={staticFile('audio/scenes/full-scene.mp3')} />` ở `Root.tsx`. `onError` trên `<Audio>` nuốt lỗi lặng lẽ theo thiết kế (để Remotion Studio không crash khi TTS chưa render xong) — **đừng dựa vào nó để phát hiện sai đuôi file**, phải tự `ls` xác nhận bằng mắt.
+
+### C. Đồng Bộ Lại Timing Mỗi Khi Audio Được Tạo Lại (QUAN TRỌNG NHẤT)
+`scenes.json` (`startFrame`/`durationInFrames`) được tính dựa trên **một bản ghi âm cụ thể**. Nếu file `full-scene.mp3` bị tạo lại (đổi giọng, đổi tốc độ, sửa kịch bản, v.v.) — dù chỉ một lần — **toàn bộ timing cũ trở nên vô giá trị** và phải tính lại từ đầu. Không có cách nào phát hiện việc này tự động; luôn tự hỏi "audio này có phải là audio mà scenes.json hiện tại được tính dựa trên không?" trước khi render bản final.
+
+Kiểm tra nhanh độ dài audio thực tế (dùng làm nguồn chân lý, không tin số cũ đã biết trước đó):
+```bash
+ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 public/audio/scenes/full-scene.mp3
+```
+So với `totalFrames / fps` trong `scenes.json`. Lệch quá 0.5s → phải tính lại timing.
+
+**Phương pháp tính timing khuyến nghị theo độ chính xác tăng dần:**
+
+1. **Tỉ lệ theo số từ (nhanh, xấp xỉ)** — dùng khi chưa có audio thật, chỉ ước lượng sơ bộ: chia đều `totalFrames` theo tỉ lệ số từ mỗi `voText` scene (tốc độ đọc chuẩn kể chuyện ~2.3-2.6 từ/giây).
+2. **Silence detection (ffmpeg, trung bình)** — dò khoảng lặng giữa các câu:
+   ```bash
+   ffmpeg -i public/audio/scenes/full-scene.mp3 -af silencedetect=noise=-30dB:d=0.3 -f null - 2>&1 | grep silence_
+   ```
+   ⚠️ Nhược điểm đã gặp thực tế: giọng TTS thường có khoảng lặng nội-câu (dấu phẩy) gần bằng khoảng lặng giữa câu, khiến việc chọn nhầm gap gây timing lệch pha (scene này ăn bớt thời gian của scene kế, xen kẽ nhanh/chậm bất thường). Chỉ dùng khi không có điều kiện chạy ASR.
+3. **ASR Word-Level Alignment (khuyến nghị, chính xác nhất — sai số <0.1s)** — phiên âm lại chính file audio đang dùng bằng `faster-whisper` (chạy local, không cần API key), lấy timestamp từng từ, rồi đối chiếu (sequence alignment) với danh sách từ trong `scenes.json` để suy ra thời điểm bắt đầu thực tế của mỗi scene:
+   ```bash
+   python3 -m venv /tmp/whisper-venv
+   /tmp/whisper-venv/bin/pip install --quiet faster-whisper
+   /tmp/whisper-venv/bin/python - << 'EOF'
+   from faster_whisper import WhisperModel
+   import json
+   model = WhisperModel("small.en", device="cpu", compute_type="int8")
+   segments, _ = model.transcribe("public/audio/scenes/full-scene.mp3", word_timestamps=True)
+   words = [{"word": w.word.strip(), "start": w.start, "end": w.end}
+            for seg in segments for w in seg.words]
+   json.dump(words, open("/tmp/words.json", "w"), indent=2)
+   EOF
+   ```
+   Sau đó dùng `difflib.SequenceMatcher` (Python stdlib) để khớp chuỗi từ kỳ vọng (từ `voText` từng scene, nối theo thứ tự) với chuỗi từ ASR nhận dạng được, lấy timestamp của từ đầu tiên mỗi scene làm `startFrame` (quy đổi `round(t * fps)`), nội suy tuyến tính cho các từ không khớp trực tiếp. Cách này đã kiểm chứng khớp chính xác tới mili-giây trên audio thật, kể cả với văn bản dài 45+ scene / 1000+ từ.
+
+### D. Xác Nhận Cuối Cùng Trước Khi Render
+- `sum(durationInFrames của tất cả scene) === totalFrames === round(audio_duration_thật × fps)`.
+- Render thử 2-3 frame rải rác (đầu, giữa, cuối) bằng `npx remotion still src/index.ts <CompositionId> out.png --frame=<N>` và xem ảnh — xác nhận ảnh đúng nội dung + phụ đề đúng câu tại đúng thời điểm đó.
+- `npx tsc --noEmit` không lỗi.

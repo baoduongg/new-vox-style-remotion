@@ -148,6 +148,7 @@ Khi người dùng yêu cầu gợi ý chủ đề mới:
   ffmpeg -i public/audio/scenes/full-scene.mp3 -af silencedetect=noise=-28dB:d=0.35 -f null -
   ```
 - Khớp điểm chuyển scene chuẩn xác vào khoảng lặng giữa các câu.
+- **Trước khi coi bước này là xong**: chạy đủ Critical Sync Checklist tại `references/remotion-scaffold.md` Mục 6 (tên file ảnh, đuôi file audio khớp Root.tsx, và — với video >15 scenes — ưu tiên ASR word-level alignment thay vì chỉ dựa silencedetect để tránh lệch timing).
 
 ---
 

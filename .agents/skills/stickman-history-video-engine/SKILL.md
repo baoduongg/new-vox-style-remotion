@@ -71,6 +71,31 @@ Khi người dùng yêu cầu gợi ý chủ đề mới:
    (metadata.md - 1 Nhân vật + 1 Va chạm + Text ≤ 4 từ)                 (retention-qc.md - A/B Titles)
 ```
 
+### Bước 0: Xác Định Ngôn Ngữ & Tỷ Lệ Khung Hình
+- Mặc định **Tiếng Anh (English)** nếu người dùng không yêu cầu ngôn ngữ khác. Xác định tỷ lệ: `16:9` (dài 8-15 phút) hoặc `9:16` (Shorts).
+- Toàn bộ kịch bản thoại (`voText_<lang>.md`), văn bản nhãn sơ đồ trong prompt AI và thumbnail phải đồng bộ 100% theo ngôn ngữ đã chọn.
+
+### Bước 1: Chọn Chủ Đề (6 Phân Hệ)
+- Đọc `references/topic-history.md` chống trùng, đề xuất 3-5 ý tưởng theo 6 phân hệ tại `references/topics.md` (Khoa Học & Y Học, Tài Chính & Kinh Tế, Tâm Lý Học & Thói Quen, Công Nghệ & AI, Sinh Tồn & What-If, Lịch Sử & Văn Minh Cổ Đại). Lưu trạng thái `[IN_PROGRESS]` khi duyệt.
+
+### Bước 2: Viết Kịch Bản 5 Phần
+- Đọc `references/script-writing.md`. Viết kịch bản giải thích trực quan, rõ ràng, có nhịp hook mở đầu và kết luận đọng lại bài học. Lưu vào `voText_<lang>.md`.
+
+### Bước 3: Scene Breakdown & Timing (Pacing 5-8s)
+- Bẻ kịch bản thành **40-55 shots** (mỗi shot 5-8 giây). Tạo `scenes.json` với đầy đủ `startFrame`, `durationInFrames`, `voText`, `imageSrc`.
+
+### Bước 4: Visual Prompts (Đúng Ngôn Ngữ Nhãn Sơ Đồ)
+- Đọc `references/visual-sourcing.md` và `references/stickman-style-guide.md`. Áp dụng Visual DNA 2D Vector Cartoon Phổ Quát (Mục 3 ở trên) cho từng scene, đảm bảo nhãn/chữ trong sơ đồ khớp ngôn ngữ dự án.
+- Xuất `prompt.json` và `prompts_gemini.md` cho user tự tạo ảnh, lưu vào `public/assets/scenes/` (`0.png` ... `N-1.png`).
+
+### Bước 5: Scaffold Standalone Project Remotion
+- Đọc `references/remotion-scaffold.md`. Khởi tạo project Remotion độc lập với `Root.tsx`, `ImageScene.tsx`, `AnimatedSubtitle.tsx`, `ChannelWatermark.tsx`.
+- Copy file avatar mascot vào `<topic-folder>/public/` (xem Mục 6 ở trên — file chưa có sẵn, cần tạo/lấy trước).
+
+### Bước 6: Master Audio & Sync Silencedetect
+- Đọc `references/sound-design.md`. Tạo voiceover master liền mạch (`full-scene.mp3`), chạy `ffmpeg silencedetect` để tinh chỉnh điểm chuyển shot theo khoảng lặng tự nhiên.
+- Với video >15 scenes, ưu tiên ASR word-level alignment (`faster-whisper` + `difflib.SequenceMatcher`, xem `stickman-storytelling-video-engine/references/remotion-scaffold.md` Mục 5.C) thay vì chỉ dựa silencedetect, để tránh timing lệch pha giữa các scene.
+
 ### Bước 7: Tạo Thumbnail 2D Vector High-CTR (Rule 3 Giây trên Mobile & Chuẩn 1-1-4)
 - Đọc `references/metadata.md`.
 - Áp dụng **Quy tắc 1-1-4 (1 Nhân Vật + 1 Điểm Va Chạm/Xung Đột + Text ≤ 4 Từ)**:
